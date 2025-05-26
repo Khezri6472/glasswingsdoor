@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404,render
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import random
 
 from .models import Product,Category,Comment
 from .forms import CommentForm
