@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-12 14:15+0330\n"
-"PO-Revision-Date: 2025-05-12 13:53+0330\n"
+"POT-Creation-Date: 2025-05-28 23:52+0330\n"
+"PO-Revision-Date: 2025-05-28 23:59+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,456 +18,376 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.10.2\n"
 
-#: .\templates\_base.html:62
+#: .\templates\_base.html:63
 msgid "Search for the product name, brand or category you are looking for…"
 msgstr "نام کالا یا دسته بندی مورد نظر خود را جستجو کنید ..."
 
-#: .\templates\_base.html:91
+#: .\templates\_base.html:92
 msgid "User Account"
 msgstr "حساب کاربری"
 
-#: .\templates\_base.html:96
+#: .\templates\_base.html:97
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\templates\_base.html:100
+#: .\templates\_base.html:101
 msgid "Messages"
 msgstr "پیغام ها"
 
-#: .\templates\_base.html:103
+#: .\templates\_base.html:104
 msgid "Edit Account"
 msgstr "ویرایش حساب کاربر"
 
-#: .\templates\_base.html:107
+#: .\templates\_base.html:108
 msgid "Log Out"
 msgstr "خروج"
 
-#: .\templates\_base.html:125 .\templates\_base.html:555
+#: .\templates\_base.html:126 .\templates\_base.html:276
 msgid "Home"
 msgstr "صفحه اصلی"
 
-#: .\templates\_base.html:128 .\templates\_base.html:269
+#: .\templates\_base.html:129
 msgid "Product Categories"
 msgstr "دسته بندی محصولات"
 
-#: .\templates\_base.html:131 .\templates\_base.html:272
-#: .\templates\_base.html:558
-msgid "Operator"
-msgstr "اپراتور"
-
-#: .\templates\_base.html:133 .\templates\home.html:345
-msgid "Oprator"
-msgstr "اپراتور"
-
-#: .\templates\_base.html:134 .\templates\_base.html:275
-#: .\templates\_base.html:561
-msgid "Oprator Sliding"
-msgstr "اپراتور اسلایدینگ"
-
-#: .\templates\_base.html:135 .\templates\_base.html:276
-#: .\templates\_base.html:564
-msgid "Oprator Telescopy One Side"
-msgstr "اپراتور تلسکوپی یکطرفه"
-
-#: .\templates\_base.html:136 .\templates\_base.html:567
-msgid "Oprator Telescopy Tow Side"
-msgstr "اپراتور تلسکوپی دوطرفه"
-
-#: .\templates\_base.html:140 .\templates\_base.html:143
-#: .\templates\_base.html:281 .\templates\_base.html:283
-#: .\templates\_base.html:573
-msgid "Oprator Subcategory"
-msgstr "زیرمجموعه اپراتور"
-
-#: .\templates\_base.html:144 .\templates\_base.html:284
-#: .\templates\_base.html:577
-msgid "Motor"
-msgstr "موتور"
-
-#: .\templates\_base.html:145 .\templates\_base.html:285
-#: .\templates\_base.html:580
-msgid "Electronic Eye"
-msgstr "چشم الکترونیکی"
-
-#: .\templates\_base.html:146 .\templates\_base.html:286
-#: .\templates\_base.html:583
-msgid "Electronic Board"
-msgstr "برد الکترونیکی"
-
-#: .\templates\_base.html:147 .\templates\_base.html:287
-#: .\templates\_base.html:586
-msgid "Belt"
-msgstr "تسمه"
-
-#: .\templates\_base.html:148 .\templates\_base.html:288
-#: .\templates\_base.html:589
-msgid "Hanger Pack"
-msgstr "هنگرپک"
-
-#: .\templates\_base.html:149 .\templates\_base.html:289
-#: .\templates\_base.html:592
-msgid "Plastic Part"
-msgstr "پلاستیک پارت"
-
-#: .\templates\_base.html:150 .\templates\_base.html:290
-#: .\templates\_base.html:595
-msgid "Access Control"
-msgstr "اکسس کنترل"
-
-#: .\templates\_base.html:151 .\templates\_base.html:291
-#: .\templates\_base.html:598
-msgid "Motor Pulley"
-msgstr "فولی موتور"
-
-#: .\templates\_base.html:152 .\templates\_base.html:292
-#: .\templates\_base.html:601
-msgid "Motor Stand"
-msgstr "پایه موتور "
-
-#: .\templates\_base.html:153 .\templates\_base.html:293
-#: .\templates\_base.html:604
-msgid "Battery"
-msgstr "باتری"
-
-#: .\templates\_base.html:154 .\templates\_base.html:250
-#: .\templates\_base.html:294 .\templates\_base.html:607
-#: .\templates\_base.html:750
-msgid "Lock"
-msgstr "قفل"
-
-#: .\templates\_base.html:158 .\templates\_base.html:298
-msgid "Slat"
-msgstr "لـــت "
-
-#: .\templates\_base.html:160 .\templates\_base.html:300
-msgid "Slat Frame 3/5 * 7/5"
-msgstr "لت فریم 7/5 * 6"
-
-#: .\templates\_base.html:161 .\templates\_base.html:301
-msgid "Slat Frame 6 * 7/5"
-msgstr "لت فریم 6 * 3/5"
-
-#: .\templates\_base.html:162 .\templates\_base.html:302
-msgid "Slat Frame 3/5 * 6"
-msgstr "لت فریم 6 * 3/5"
-
-#: .\templates\_base.html:163 .\templates\_base.html:303
-msgid "Slat Frame 6 * 6"
-msgstr "لت فریم 6 * 6"
-
-#: .\templates\_base.html:164 .\templates\_base.html:304
-msgid "Partition Slat"
-msgstr "لت پارتیشنی"
-
-#: .\templates\_base.html:165 .\templates\_base.html:305
-msgid "Steel Slat 3/5 * 7/5"
-msgstr "لت فریم 7/5 * 3/5 استیل"
-
-#: .\templates\_base.html:166 .\templates\_base.html:306
-msgid "Steel Slat 6 * 7/5"
-msgstr "لت فریم 7/5 * 6 استیل"
-
-#: .\templates\_base.html:167 .\templates\_base.html:307
-msgid "Slat Frame 3/5 * 7/5 eco"
-msgstr "لت فریم 7/5 * 3/5 eco"
-
-#: .\templates\_base.html:168 .\templates\_base.html:308
-msgid "Slat Frame 6 * 7/5 eco"
-msgstr "لت فریم 7/5 * 6 eco"
-
-#: .\templates\_base.html:173 .\templates\_base.html:616
-msgid "Cover"
-msgstr "کاور"
-
-#: .\templates\_base.html:175 .\templates\_base.html:619
-msgid "Aisan Cover"
-msgstr "کاور آیسان"
-
-#: .\templates\_base.html:176 .\templates\_base.html:622
-#: .\templates\_base.html:625
-msgid "Facade Cover 16 cm"
-msgstr "کاورنما 16 سانتی"
-
-#: .\templates\_base.html:177 .\templates\_base.html:628
-msgid "Facade Cover 13 cm"
-msgstr "کاورنما 13سانتی"
-
-#: .\templates\_base.html:178 .\templates\_base.html:631
-msgid "Cover Labeli"
-msgstr "کاورنما لابلی"
-
-#: .\templates\_base.html:179 .\templates\_base.html:634
-msgid "Manual Rail Cover"
-msgstr "کاور ریلی دستی"
-
-#: .\templates\_base.html:183 .\templates\_base.html:639
-msgid "Pasar"
-msgstr "پاسار"
-
-#: .\templates\_base.html:185 .\templates\_base.html:641
-msgid "Pasar 3 sm"
-msgstr "پاسار 3 سانتی"
-
-#: .\templates\_base.html:186 .\templates\_base.html:642
-msgid "Pasar 3 sm 2 Pices"
-msgstr "پاسار 3 سانتی 2 تکه"
-
-#: .\templates\_base.html:187 .\templates\_base.html:188
-#: .\templates\_base.html:643 .\templates\_base.html:644
-msgid "Pasar 5 sm Pafili"
-msgstr "پاسار 5 سانتی پافیلی"
-
-#: .\templates\_base.html:189 .\templates\_base.html:645
-msgid "Pasar 7 sm Pafili"
-msgstr "پاسار 7 سانتی پافیلی"
-
-#: .\templates\_base.html:190 .\templates\_base.html:646
-msgid "Pasar 6 sm 2 Pices"
-msgstr "پاسار 6 سانتی 2 تکه"
-
-#: .\templates\_base.html:191 .\templates\_base.html:647
-msgid "Pasar egse"
-msgstr "پاسار تخم مرغی"
-
-#: .\templates\_base.html:196 .\templates\_base.html:260
-#: .\templates\_base.html:653 .\templates\_base.html:760
-#: .\templates\home.html:352
-msgid "Rail"
-msgstr "ریل"
-
-#: .\templates\_base.html:198 .\templates\_base.html:655
-msgid "Medium Handrail"
-msgstr "ریل دستی متوسط"
-
-#: .\templates\_base.html:199 .\templates\_base.html:656
-msgid "Heavy Handrail"
-msgstr "ریل دستی سنگین"
-
-#: .\templates\_base.html:200 .\templates\_base.html:657
-msgid "Labeli Rail"
-msgstr "ریل لابلی"
-
-#: .\templates\_base.html:201 .\templates\_base.html:658
-msgid "Aisan Rail"
-msgstr "ریل آیسان"
-
-#: .\templates\_base.html:202 .\templates\_base.html:659
-msgid "Baby Rail"
-msgstr "بچه ریل"
-
-#: .\templates\_base.html:203 .\templates\_base.html:660
-msgid "Mashhad Rail"
-msgstr "ریل مشهد"
-
-#: .\templates\_base.html:204 .\templates\_base.html:661
-msgid "Light Handrail"
-msgstr "ریل دستی سبک"
-
-#: .\templates\_base.html:209 .\templates\_base.html:667
-msgid "Midline Mouth"
-msgstr "وسط دهنه"
-
-#: .\templates\_base.html:211 .\templates\_base.html:669
-msgid "Midline Mouth 3.5 cm"
-msgstr "وسط دهنه 3.5 سانتی"
-
-#: .\templates\_base.html:212 .\templates\_base.html:670
-msgid "Midline Mouth 6 cm"
-msgstr "وسط دهنه 6 سانتی"
-
-#: .\templates\_base.html:216 .\templates\_base.html:674
-msgid "Sections"
-msgstr "مقاطع"
-
-#: .\templates\_base.html:218
-msgid "Vertical Sections"
-msgstr "فریم عمودی"
-
-#: .\templates\_base.html:219
-msgid "Vertical Sections 3/5"
-msgstr "فریم عمودی 3/5"
-
-#: .\templates\_base.html:220
-msgid "Vertical Sections 3/5 eco"
-msgstr "فریم عمودی 3/5 eco"
-
-#: .\templates\_base.html:221
-msgid "Vertical Sections 6 eco"
-msgstr "فریم عمودی 6 eco"
-
-#: .\templates\_base.html:223 .\templates\_base.html:696
-msgid "Horizontal Sections"
-msgstr "فریم افقی"
-
-#: .\templates\_base.html:224 .\templates\_base.html:699
-msgid "Horizontal Sections 7/5"
-msgstr "فریم افقی 7/5"
-
-#: .\templates\_base.html:225 .\templates\_base.html:702
-msgid "Horizontal Sections 7/5 eco"
-msgstr "فریم افقی 7/5 eco"
-
-#: .\templates\_base.html:226 .\templates\_base.html:705
-msgid "Horizontal Sections 6"
-msgstr "فریم افقی 6"
-
-#: .\templates\_base.html:228 .\templates\_base.html:229
-#: .\templates\_base.html:711 .\templates\_base.html:714
-msgid "U Sections"
-msgstr "فریم یو"
-
-#: .\templates\_base.html:230 .\templates\_base.html:717
-msgid "U Sections eco"
-msgstr "فریم یو eco"
-
-#: .\templates\_base.html:232 .\templates\_base.html:725
-msgid "Partition Sections"
-msgstr "فریم پارتیشنی"
-
-#: .\templates\_base.html:235 .\templates\_base.html:236
-#: .\templates\_base.html:728 .\templates\_base.html:731
-msgid "Cap"
-msgstr "درپوش"
-
-#: .\templates\_base.html:237 .\templates\_base.html:734
-msgid "Cap eco"
-msgstr "درپوش eco"
-
-#: .\templates\_base.html:243 .\templates\_base.html:743
-msgid "Cross Section"
-msgstr "سطح مقطع"
-
-#: .\templates\_base.html:248 .\templates\_base.html:748
-#: .\templates\home.html:359
-msgid "Fitting"
-msgstr "یراق آلات"
-
-#: .\templates\_base.html:251 .\templates\_base.html:751
-msgid "Hinge"
-msgstr "لولا"
-
-#: .\templates\_base.html:252 .\templates\_base.html:752
-msgid "Handle"
-msgstr "دستگیره"
-
-#: .\templates\_base.html:253 .\templates\_base.html:753
-msgid "Pulley"
-msgstr "فولی"
-
-#: .\templates\_base.html:254 .\templates\_base.html:754
-msgid "Fasten"
-msgstr "بست"
-
-#: .\templates\_base.html:255 .\templates\_base.html:755
-msgid "Spigot Stand"
-msgstr "پایه اسپیگات"
-
-#: .\templates\_base.html:256 .\templates\_base.html:756
-msgid "Sealant"
-msgstr "درزگیر"
-
-#: .\templates\_base.html:257 .\templates\_base.html:757
-msgid "Coating"
-msgstr "روکش"
-
-#: .\templates\_base.html:258 .\templates\_base.html:758
-msgid "Washer"
-msgstr "واشر"
-
-#: .\templates\_base.html:259 .\templates\_base.html:759
-msgid "ُStop"
-msgstr "استوپ"
-
-#: .\templates\_base.html:261 .\templates\_base.html:761
-msgid "Bumper"
-msgstr "ضربه گیر"
-
-#: .\templates\_base.html:277
-msgid "EOprator Telescopy Tow Side"
-msgstr "اپراتور تلسکوپی دوطرفه"
-
-#: .\templates\_base.html:452 .\templates\_base.html:766
+#: .\templates\_base.html:173 .\templates\home.html:364
 msgid "Glass"
 msgstr "شیشه"
 
-#: .\templates\_base.html:455 .\templates\_base.html:770
+#: .\templates\_base.html:176 .\templates\home.html:370
 msgid "Laminet"
 msgstr "لمینت"
 
-#: .\templates\_base.html:458 .\templates\_base.html:773
+#: .\templates\_base.html:179
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: .\templates\_base.html:461 .\templates\_base.html:779
+#: .\templates\_base.html:182
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: .\templates\_base.html:464 .\templates\_base.html:776
+#: .\templates\_base.html:185
 msgid "About Us"
 msgstr "درباره ما"
 
-#: .\templates\_base.html:470
+#: .\templates\_base.html:191
 msgid "Shopping Cart"
 msgstr "سبد خرید"
 
-#: .\templates\_base.html:482
+#: .\templates\_base.html:203
 msgid "View Shopping Cart"
 msgstr "مشاهده سبد خرید"
 
-#: .\templates\_base.html:518
+#: .\templates\_base.html:239
 msgid "Total Amount"
 msgstr "مبلع قابل پرداخت"
 
-#: .\templates\_base.html:521 .\templates\home.html:194
-#: .\templates\home.html:246 .\templates\home.html:414
-#: .\templates\home.html:952
+#: .\templates\_base.html:242 .\templates\home.html:192
+#: .\templates\home.html:245
 msgid "$"
 msgstr "تومان"
 
-#: .\templates\_base.html:527
+#: .\templates\_base.html:248
 msgid "Check Out"
 msgstr "ثبت سفارش"
 
-#: .\templates\_base.html:549
+#: .\templates\_base.html:270
 msgid "Search ..."
 msgstr "جستجو ..."
 
-#: .\templates\_base.html:677
-msgid "Vertical Section"
-msgstr "فریم عمودی"
-
-#: .\templates\_base.html:680
-msgid "Vertical Section 3/5"
-msgstr "فریم عمودی 3/5"
-
-#: .\templates\_base.html:683
-msgid "Vertical Section 3/5 eco"
-msgstr "فریم عمودی 3/5 eco"
-
-#: .\templates\_base.html:686
-msgid "Vertical Section 6 eco"
-msgstr "فریم عمودی 6 eco"
-
-#: .\templates\_base.html:800
+#: .\templates\_base.html:556
 msgid "Back to top"
 msgstr "بازگشت به بالا"
 
-#: .\templates\home.html:154
+#: .\templates\home.html:152
 msgid "Best Sellers"
 msgstr "پرفروش‌ترین‌ها"
 
-#: .\templates\home.html:155 .\templates\home.html:376
-#: .\templates\home.html:919
+#: .\templates\home.html:153
 msgid "View All"
 msgstr "مشاهده همه"
 
-#: .\templates\home.html:375
-msgid "Top Rated"
-msgstr "بیشترین امتیاز"
+#: .\templates\home.html:310
+msgid "More than 2000 products in different categories"
+msgstr "بیش از ۲۰۰۰ محصول در دسته‌بندی‌های مختلف"
 
-#: .\templates\home.html:918
-msgid "New Products"
-msgstr "محصولات جدید"
+#: .\templates\home.html:317
+msgid "Operator"
+msgstr "اپراتور"
+
+#: .\templates\home.html:318 .\templates\home.html:332
+#: .\templates\home.html:339 .\templates\home.html:346
+#: .\templates\home.html:352 .\templates\home.html:358
+#: .\templates\home.html:365 .\templates\home.html:371
+#: .\templates\home.html:378
+msgid "Model"
+msgstr "مذل"
+
+#: .\templates\home.html:324
+#| msgid "Operator"
+msgid "SubOperator"
+msgstr "زیرمجموعه اپراتور"
+
+#: .\templates\home.html:325
+#| msgid "Products"
+msgid "Product Sample"
+msgstr "نمونه محصول"
+
+#: .\templates\home.html:331
+msgid "Slat"
+msgstr "لـــت "
+
+#: .\templates\home.html:338
+msgid "Cover"
+msgstr "کاور"
+
+#: .\templates\home.html:345
+msgid "Pasar"
+msgstr "پاسار"
+
+#: .\templates\home.html:351
+msgid "Sections"
+msgstr "مقاطع"
+
+#: .\templates\home.html:357
+msgid "Fitting"
+msgstr "یراق آلات"
+
+#: .\templates\home.html:377
+#| msgid "New Products"
+msgid "Special Products"
+msgstr "محصولات خاص"
+
+#~ msgid "Oprator"
+#~ msgstr "اپراتور"
+
+#~ msgid "Oprator Sliding"
+#~ msgstr "اپراتور اسلایدینگ"
+
+#~ msgid "Oprator Telescopy One Side"
+#~ msgstr "اپراتور تلسکوپی یکطرفه"
+
+#~ msgid "Oprator Telescopy Tow Side"
+#~ msgstr "اپراتور تلسکوپی دوطرفه"
+
+#~ msgid "Oprator Subcategory"
+#~ msgstr "زیرمجموعه اپراتور"
+
+#~ msgid "Motor"
+#~ msgstr "موتور"
+
+#~ msgid "Electronic Eye"
+#~ msgstr "چشم الکترونیکی"
+
+#~ msgid "Electronic Board"
+#~ msgstr "برد الکترونیکی"
+
+#~ msgid "Belt"
+#~ msgstr "تسمه"
+
+#~ msgid "Hanger Pack"
+#~ msgstr "هنگرپک"
+
+#~ msgid "Plastic Part"
+#~ msgstr "پلاستیک پارت"
+
+#~ msgid "Access Control"
+#~ msgstr "اکسس کنترل"
+
+#~ msgid "Motor Pulley"
+#~ msgstr "فولی موتور"
+
+#~ msgid "Motor Stand"
+#~ msgstr "پایه موتور "
+
+#~ msgid "Battery"
+#~ msgstr "باتری"
+
+#~ msgid "Lock"
+#~ msgstr "قفل"
+
+#~ msgid "Slat Frame 3/5 * 7/5"
+#~ msgstr "لت فریم 7/5 * 6"
+
+#~ msgid "Slat Frame 6 * 7/5"
+#~ msgstr "لت فریم 6 * 3/5"
+
+#~ msgid "Slat Frame 3/5 * 6"
+#~ msgstr "لت فریم 6 * 3/5"
+
+#~ msgid "Slat Frame 6 * 6"
+#~ msgstr "لت فریم 6 * 6"
+
+#~ msgid "Partition Slat"
+#~ msgstr "لت پارتیشنی"
+
+#~ msgid "Steel Slat 3/5 * 7/5"
+#~ msgstr "لت فریم 7/5 * 3/5 استیل"
+
+#~ msgid "Steel Slat 6 * 7/5"
+#~ msgstr "لت فریم 7/5 * 6 استیل"
+
+#~ msgid "Slat Frame 3/5 * 7/5 eco"
+#~ msgstr "لت فریم 7/5 * 3/5 eco"
+
+#~ msgid "Slat Frame 6 * 7/5 eco"
+#~ msgstr "لت فریم 7/5 * 6 eco"
+
+#~ msgid "Aisan Cover"
+#~ msgstr "کاور آیسان"
+
+#~ msgid "Facade Cover 16 cm"
+#~ msgstr "کاورنما 16 سانتی"
+
+#~ msgid "Facade Cover 13 cm"
+#~ msgstr "کاورنما 13سانتی"
+
+#~ msgid "Cover Labeli"
+#~ msgstr "کاورنما لابلی"
+
+#~ msgid "Manual Rail Cover"
+#~ msgstr "کاور ریلی دستی"
+
+#~ msgid "Pasar 3 sm"
+#~ msgstr "پاسار 3 سانتی"
+
+#~ msgid "Pasar 3 sm 2 Pices"
+#~ msgstr "پاسار 3 سانتی 2 تکه"
+
+#~ msgid "Pasar 5 sm Pafili"
+#~ msgstr "پاسار 5 سانتی پافیلی"
+
+#~ msgid "Pasar 7 sm Pafili"
+#~ msgstr "پاسار 7 سانتی پافیلی"
+
+#~ msgid "Pasar 6 sm 2 Pices"
+#~ msgstr "پاسار 6 سانتی 2 تکه"
+
+#~ msgid "Pasar egse"
+#~ msgstr "پاسار تخم مرغی"
+
+#~ msgid "Rail"
+#~ msgstr "ریل"
+
+#~ msgid "Medium Handrail"
+#~ msgstr "ریل دستی متوسط"
+
+#~ msgid "Heavy Handrail"
+#~ msgstr "ریل دستی سنگین"
+
+#~ msgid "Labeli Rail"
+#~ msgstr "ریل لابلی"
+
+#~ msgid "Aisan Rail"
+#~ msgstr "ریل آیسان"
+
+#~ msgid "Baby Rail"
+#~ msgstr "بچه ریل"
+
+#~ msgid "Mashhad Rail"
+#~ msgstr "ریل مشهد"
+
+#~ msgid "Light Handrail"
+#~ msgstr "ریل دستی سبک"
+
+#~ msgid "Midline Mouth"
+#~ msgstr "وسط دهنه"
+
+#~ msgid "Midline Mouth 3.5 cm"
+#~ msgstr "وسط دهنه 3.5 سانتی"
+
+#~ msgid "Midline Mouth 6 cm"
+#~ msgstr "وسط دهنه 6 سانتی"
+
+#~ msgid "Vertical Sections"
+#~ msgstr "فریم عمودی"
+
+#~ msgid "Vertical Sections 3/5"
+#~ msgstr "فریم عمودی 3/5"
+
+#~ msgid "Vertical Sections 3/5 eco"
+#~ msgstr "فریم عمودی 3/5 eco"
+
+#~ msgid "Vertical Sections 6 eco"
+#~ msgstr "فریم عمودی 6 eco"
+
+#~ msgid "Horizontal Sections"
+#~ msgstr "فریم افقی"
+
+#~ msgid "Horizontal Sections 7/5"
+#~ msgstr "فریم افقی 7/5"
+
+#~ msgid "Horizontal Sections 7/5 eco"
+#~ msgstr "فریم افقی 7/5 eco"
+
+#~ msgid "Horizontal Sections 6"
+#~ msgstr "فریم افقی 6"
+
+#~ msgid "U Sections"
+#~ msgstr "فریم یو"
+
+#~ msgid "U Sections eco"
+#~ msgstr "فریم یو eco"
+
+#~ msgid "Partition Sections"
+#~ msgstr "فریم پارتیشنی"
+
+#~ msgid "Cap"
+#~ msgstr "درپوش"
+
+#~ msgid "Cap eco"
+#~ msgstr "درپوش eco"
+
+#~ msgid "Cross Section"
+#~ msgstr "سطح مقطع"
+
+#~ msgid "Hinge"
+#~ msgstr "لولا"
+
+#~ msgid "Handle"
+#~ msgstr "دستگیره"
+
+#~ msgid "Pulley"
+#~ msgstr "فولی"
+
+#~ msgid "Fasten"
+#~ msgstr "بست"
+
+#~ msgid "Spigot Stand"
+#~ msgstr "پایه اسپیگات"
+
+#~ msgid "Sealant"
+#~ msgstr "درزگیر"
+
+#~ msgid "Coating"
+#~ msgstr "روکش"
+
+#~ msgid "Washer"
+#~ msgstr "واشر"
+
+#~ msgid "ُStop"
+#~ msgstr "استوپ"
+
+#~ msgid "Bumper"
+#~ msgstr "ضربه گیر"
+
+#~ msgid "EOprator Telescopy Tow Side"
+#~ msgstr "اپراتور تلسکوپی دوطرفه"
+
+#~ msgid "Vertical Section"
+#~ msgstr "فریم عمودی"
+
+#~ msgid "Vertical Section 3/5"
+#~ msgstr "فریم عمودی 3/5"
+
+#~ msgid "Vertical Section 3/5 eco"
+#~ msgstr "فریم عمودی 3/5 eco"
+
+#~ msgid "Vertical Section 6 eco"
+#~ msgstr "فریم عمودی 6 eco"
+
+#~ msgid "Top Rated"
+#~ msgstr "بیشترین امتیاز"
 
 #~ msgid "About GLASSWING"
 #~ msgstr "آنچه در باره گلس وینگ باید بدانید"
@@ -480,9 +400,6 @@ msgstr "محصولات جدید"
 
 #~ msgid "Home Page"
 #~ msgstr "صفحه اصلی"
-
-#~ msgid "Products"
-#~ msgstr "محصولات"
 
 #~ msgid "Company slogan"
 #~ msgstr "شعار شرکت"
