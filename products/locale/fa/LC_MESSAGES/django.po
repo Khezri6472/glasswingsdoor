@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-28 23:48+0330\n"
-"PO-Revision-Date: 2025-05-12 22:44+0330\n"
+"PO-Revision-Date: 2025-06-02 21:05+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "تصویر محصول"
 
 #: .\products\models.py:78
 msgid "Product Images"
-msgstr "تصویر محصول"
+msgstr "تصاویر محصول"
 
 #: .\products\models.py:82
 msgid "Key"

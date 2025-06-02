@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-28 23:52+0330\n"
-"PO-Revision-Date: 2025-05-28 23:59+0330\n"
+"POT-Creation-Date: 2025-05-31 01:57+0330\n"
+"PO-Revision-Date: 2025-05-31 02:02+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "دسته بندی محصولات"
 msgid "Glass"
 msgstr "شیشه"
 
-#: .\templates\_base.html:176 .\templates\home.html:370
+#: .\templates\_base.html:176 .\templates\home.html:371
 msgid "Laminet"
 msgstr "لمینت"
 
@@ -83,7 +83,8 @@ msgid "Total Amount"
 msgstr "مبلع قابل پرداخت"
 
 #: .\templates\_base.html:242 .\templates\home.html:192
-#: .\templates\home.html:245
+#: .\templates\home.html:245 .\templates\home.html:433
+#: .\templates\home.html:501 .\templates\home.html:553
 msgid "$"
 msgstr "تومان"
 
@@ -103,7 +104,8 @@ msgstr "بازگشت به بالا"
 msgid "Best Sellers"
 msgstr "پرفروش‌ترین‌ها"
 
-#: .\templates\home.html:153
+#: .\templates\home.html:153 .\templates\home.html:394
+#: .\templates\home.html:462
 msgid "View All"
 msgstr "مشاهده همه"
 
@@ -115,23 +117,17 @@ msgstr "بیش از ۲۰۰۰ محصول در دسته‌بندی‌های مخت
 msgid "Operator"
 msgstr "اپراتور"
 
-#: .\templates\home.html:318 .\templates\home.html:332
-#: .\templates\home.html:339 .\templates\home.html:346
-#: .\templates\home.html:352 .\templates\home.html:358
-#: .\templates\home.html:365 .\templates\home.html:371
-#: .\templates\home.html:378
-msgid "Model"
-msgstr "مذل"
-
-#: .\templates\home.html:324
-#| msgid "Operator"
-msgid "SubOperator"
-msgstr "زیرمجموعه اپراتور"
-
-#: .\templates\home.html:325
-#| msgid "Products"
+#: .\templates\home.html:318 .\templates\home.html:325
+#: .\templates\home.html:332 .\templates\home.html:339
+#: .\templates\home.html:346 .\templates\home.html:352
+#: .\templates\home.html:358 .\templates\home.html:365
+#: .\templates\home.html:372 .\templates\home.html:379
 msgid "Product Sample"
 msgstr "نمونه محصول"
+
+#: .\templates\home.html:324
+msgid "SubOperator"
+msgstr "زیرمجموعه اپراتور"
 
 #: .\templates\home.html:331
 msgid "Slat"
@@ -153,10 +149,27 @@ msgstr "مقاطع"
 msgid "Fitting"
 msgstr "یراق آلات"
 
-#: .\templates\home.html:377
-#| msgid "New Products"
+#: .\templates\home.html:378
 msgid "Special Products"
 msgstr "محصولات خاص"
+
+#: .\templates\home.html:393
+#| msgid "Special Products"
+msgid "New Products"
+msgstr "محصولات جدید"
+
+#: .\templates\home.html:518
+#| msgid "Featured"
+msgid "Feature Product"
+msgstr "محصولات آینده"
+
+#: .\templates\home.html:556
+#| msgid "Product Sample"
+msgid "Product Detail"
+msgstr "جزئیات محصول"
+
+#~ msgid "Model"
+#~ msgstr "مذل"
 
 #~ msgid "Oprator"
 #~ msgstr "اپراتور"
@@ -433,9 +446,6 @@ msgstr "محصولات خاص"
 
 #~ msgid "Store Overview"
 #~ msgstr "نمای کلی"
-
-#~ msgid "Featured"
-#~ msgstr "محصولات جدید"
 
 #~ msgid "Quick View"
 #~ msgstr "مشاهده جزئیات"
