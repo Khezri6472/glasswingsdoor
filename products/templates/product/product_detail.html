@@ -133,38 +133,22 @@
                         </div>
                         <div class="product-params dt-sl">
                             <ul data-title="{% trans "Product Feature" %}">
-                                <li>
-                                    <span>حافظه داخلی: </span>
-                                    <span> 256 گیگابایت </span>
-                                </li>
-                                <li>
-                                    <span>شبکه های ارتباطی: </span>
-                                    <span> 2G,3G,4G </span>
-                                </li>
-                                <li>
-                                    <span>رزولوشن عکس: </span>
-                                    <span> 12.0 مگاپیکسل</span>
-                                </li>
-                                <li>
-                                    <span>تعداد سیم کارت: </span>
-                                    <span> تک </span>
-                                </li>
-                                <li>
-                                    <span>ویژگی‌های خاص: </span>
-                                    <span> مقاوم در برابر آب
-                                        مناسب عکاسی
-                                        مناسب عکاسی سلفی
-                                        مناسب بازی
-                                        مجهز به حس‌گر تشخیص چهره
-                                    </span>
-                                </li>
+                                {% if product_detail.specifications %}
+                                    {% for specification in product_detail.specifications.all %}
+                                    <li>
+                                        <span>{{specification.key}}: </span>
+                                        <span> {{specification.value}}</span>
+                                    </li>
+                                    {% endfor %}
+                                {% endif %}
+                               
                             </ul>
                             <div class="sum-more">
                                 <span class="show-more btn-link-border">
-                                    + موارد بیشتر
+                                    + {% trans "More Items" %}
                                 </span>
                                 <span class="show-less btn-link-border">
-                                    - بستن
+                                    - {% trans "Close" %}
                                 </span>
                             </div>
                         </div>
@@ -410,6 +394,26 @@
                             </h1>
                             <h3>{{product_detail.short_description}}</h3>
                         </div>
+                         <section>
+                                    <h3 class="params-title">{% trans "General Specifications" %}</h3>
+                                    <ul class="params-list">
+                                        {% if product_detail.specifications %}
+                                            {% for specification in product_detail.specifications.all %}
+                                                <li>
+                                                    <div class="params-list-key">
+                                                        <span class="d-block">{{specification.key}}</span>
+                                                    </div>
+                                                    <div class="params-list-value">
+                                                        <span class="d-block">
+                                                          {{specification.value}}
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                         {% endif %}
+                                        
+                                    </ul>
+                                </section>
                         
                     </div>
                     <div class="ah-tab-content comments-tab dt-sl">
@@ -421,6 +425,7 @@
                             <h3>{{product_detail.short_description}}<span
                                     class="rate-product"></span></h3>
                         </div>
+                        
                         <div class="dt-sl">
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\templates\home.html:461
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-31 01:57+0330\n"
+"POT-Creation-Date: 2025-06-02 22:04+0330\n"
 "PO-Revision-Date: 2025-05-31 02:02+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,17 +155,14 @@ msgid "Special Products"
 msgstr "محصولات خاص"
 
 #: .\templates\home.html:393
-#| msgid "Special Products"
 msgid "New Products"
 msgstr "محصولات جدید"
 
 #: .\templates\home.html:518
-#| msgid "Featured"
 msgid "Feature Product"
 msgstr "محصولات آینده"
 
 #: .\templates\home.html:556
-#| msgid "Product Sample"
 msgid "Product Detail"
 msgstr "جزئیات محصول"
 
