@@ -57,7 +57,7 @@
                                     <h3>{% trans "Email Or Username" %}</h3>
                                 </div>
                                 <div class="form-row with-icon">
-                                    {{ form.email|add_class:"input-ui pr-2"|attr:"placeholder:ایمیل یا شماره موبایل خود را وارد نمایید" }}
+                                    {{ form.email|add_class:"input-ui pr-2"|attr:"placeholder:ایمیل یا نام کاربری خود را وارد نمایید" }}
                                     <i class="mdi mdi-account-circle-outline"></i>
                                 </div>
 
@@ -88,7 +88,7 @@
                             <div class="form-footer mt-3">
                                 <div>
                                     <span class="font-weight-bold">{% trans "Have you already registered?" %}</span>
-                                    <a href="#" class="mr-3 mt-2">{% trans "login" %}</a>
+                                    <a href="{% url 'account_login' %}" class="mr-3 mt-2">{% trans "login" %}</a>
                                 </div>
                             </div>
                         </div>

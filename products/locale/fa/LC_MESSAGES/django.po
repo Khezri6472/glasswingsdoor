@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-02 22:04+0330\n"
+"POT-Creation-Date: 2025-06-06 00:30+0330\n"
 "PO-Revision-Date: 2025-06-02 22:05+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgid "What is your score?"
 msgstr "امتیاز شما"
 
 #: .\products\models.py:210
-#: .\products\templates\product\product_detail.html:494
+#: .\products\templates\product\product_detail.html:515
 msgid "Comment"
 msgstr "دیدگاه"
 
@@ -286,12 +286,10 @@ msgid "Product Feature"
 msgstr "ویژگی های محصول"
 
 #: .\products\templates\product\product_detail.html:151
-#| msgid "Order Items"
 msgid "More Items"
 msgstr "موارد بیشتر"
 
 #: .\products\templates\product\product_detail.html:154
-#| msgid "Cover"
 msgid "Close"
 msgstr "بستن"
 
@@ -304,7 +302,7 @@ msgid "price"
 msgstr "قیمت"
 
 #: .\products\templates\product\product_detail.html:162
-#: .\products\templates\product\product_detail.html:761
+#: .\products\templates\product\product_detail.html:782
 #: .\products\templates\product\product_list.html:323
 #: .\products\templates\product\product_list.html:375
 #: .\products\templates\product\product_list.html:427
@@ -335,67 +333,73 @@ msgstr "نظرات کاربران"
 msgid "Review"
 msgstr "توضیحات"
 
-#: .\products\templates\product\product_detail.html:406
+#: .\products\templates\product\product_detail.html:403
+#, fuzzy
+#| msgid "Technical Specifications"
+msgid "General Specifications"
+msgstr "مشخصات فنی"
+
+#: .\products\templates\product\product_detail.html:426
 msgid "Users' rating to"
 msgstr "امتیاز کاربران به:"
 
-#: .\products\templates\product\product_detail.html:476
+#: .\products\templates\product\product_detail.html:497
 msgid "You can also comment on this product."
 msgstr "شما هم می‌توانید در مورد این کالا نظر بدهید."
 
-#: .\products\templates\product\product_detail.html:478
+#: .\products\templates\product\product_detail.html:499
 msgid "To post a comment, you must first log in to your account."
 msgstr "برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید."
 
-#: .\products\templates\product\product_detail.html:483
+#: .\products\templates\product\product_detail.html:504
 msgid "Add new comment"
 msgstr "افزودن نظر جدید"
 
-#: .\products\templates\product\product_detail.html:493
+#: .\products\templates\product\product_detail.html:514
 msgid "User comments"
 msgstr "نظرات کاربران"
 
-#: .\products\templates\product\product_detail.html:505
+#: .\products\templates\product\product_detail.html:526
 msgid "Buyer of this product"
 msgstr "خریدار این محصول"
 
-#: .\products\templates\product\product_detail.html:517
+#: .\products\templates\product\product_detail.html:538
 msgid "Purchased from:"
 msgstr "خریداری شده از:"
 
-#: .\products\templates\product\product_detail.html:519
+#: .\products\templates\product\product_detail.html:540
 msgid "glasswing"
 msgstr "گلس وینگ"
 
-#: .\products\templates\product\product_detail.html:524
+#: .\products\templates\product\product_detail.html:545
 msgid "I recommend buying this product."
 msgstr "خرید این محصول را توصیه می‌کنم"
 
-#: .\products\templates\product\product_detail.html:531
+#: .\products\templates\product\product_detail.html:552
 msgid "By"
 msgstr "توسط"
 
-#: .\products\templates\product\product_detail.html:531
+#: .\products\templates\product\product_detail.html:552
 msgid "In Date"
 msgstr "در تاریخ"
 
-#: .\products\templates\product\product_detail.html:537
+#: .\products\templates\product\product_detail.html:558
 msgid "Was this comment helpful to you?"
 msgstr "آیا این نظر برایتان مفید بود؟ "
 
-#: .\products\templates\product\product_detail.html:538
+#: .\products\templates\product\product_detail.html:559
 msgid "Yes"
 msgstr "بله"
 
-#: .\products\templates\product\product_detail.html:540
+#: .\products\templates\product\product_detail.html:561
 msgid "No"
 msgstr "خیر"
 
-#: .\products\templates\product\product_detail.html:721
+#: .\products\templates\product\product_detail.html:742
 msgid "Buyers of this product also purchased the following products:"
 msgstr "خریداران این محصول، محصولات زیر را نیز خریداری کرده‌اند:"
 
-#: .\products\templates\product\product_detail.html:722
+#: .\products\templates\product\product_detail.html:743
 msgid "View All"
 msgstr "نمایش همه"
 
