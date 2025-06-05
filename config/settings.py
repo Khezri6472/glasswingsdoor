@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rosetta',
     'ckeditor',
     'mptt',
+    'widget_tweaks',
     
 
     'accounts',
@@ -67,6 +68,8 @@ INSTALLED_APPS = [
     'products',
     'persian_numbers',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     #allauth
@@ -114,8 +117,8 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-    
-]
+     ]
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -197,8 +200,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #accounts config
 AUTH_USER_MODEL='accounts.CustomUser'
 
-LOGIN_REDIRECT_URL='home'
-LOGOUT_REDIRECT_URL='login'
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 #CRISPY FORM SETTING
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

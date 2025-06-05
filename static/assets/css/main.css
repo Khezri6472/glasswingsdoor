@@ -599,6 +599,11 @@ header.main-header .dropdown-menu {
     transition: all 0.3s ease-in-out;
 }
 
+header.main-header .dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
 header.main-header .dropdown-menu.cart {
     width: 300px;
 }

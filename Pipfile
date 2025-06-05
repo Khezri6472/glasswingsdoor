@@ -18,6 +18,7 @@ disutils = "*"
 setuptools = "*"
 django-ckeditor = "*"
 django-mptt = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 

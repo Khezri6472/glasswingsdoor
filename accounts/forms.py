@@ -2,14 +2,30 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth import get_user_model
 
 
-class CustomUserCreationForm(UserCreationForm):
-     class Meta:
-        model=get_user_model()
-        fields=('email','username')
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
 
-class customUserChangeForm(UserChangeForm):
-   class Meta:
-      model=get_user_model()
-      fields=('email','username')
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email', )  # یا هر فیلدی که در مدل داری
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email',)
+
+
+
+# class CustomUserCreationForm(UserCreationForm):
+#      class Meta:
+#         model=get_user_model()
+#         fields=('email','username')
+
+# class customUserChangeForm(UserChangeForm):
+#    class Meta:
+#       model=get_user_model()
+#       fields=('email','username')
 
       
