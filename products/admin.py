@@ -45,10 +45,13 @@ class InventoryFilter(admin.SimpleListFilter):
         if self.value() == InventoryFilter.MORE_THAN_10:
             return queryset.filter(inventory__gt=10)
 
+class TechnicalSpecificationInline(admin.TabularInline):  # یا admin.StackedInline
+    model = models.TechnicalSpecification
+    extra = 3  # تعداد ردیف‌های خالی پیش‌فرض 
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'inventory', 'unit_price', 'inventory_status', 'product_category', 'num_of_comments']
+    list_display = ['id','unit_code', 'name', 'inventory', 'unit_price', 'inventory_status', 'product_category', 'num_of_comments']
     list_per_page = 10
     list_editable = ['unit_price']
     list_select_related = ['category']
@@ -59,6 +62,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['name', ]
     }
+    inlines = [TechnicalSpecificationInline]  # ⬅ اضافه کردن این خط
 
     def get_queryset(self, request):
         return super().get_queryset(request) \
@@ -138,10 +142,11 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(models.TechnicalSpecification)
-class TechnicalSpecificationAdmin(admin.ModelAdmin):
-    list_display=['key','value',]
-    list_per_page = 10
+
+#@admin.register(models.TechnicalSpecification)
+#class TechnicalSpecificationAdmin(admin.ModelAdmin):
+#    list_display=['key','value',]
+ #   list_per_page = 10
     # list_editable = ['key','value']
 
 

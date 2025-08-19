@@ -13,11 +13,25 @@ class ProductListView(generic.ListView):
     model=Product
     template_name='product/product_list.html'
     context_object_name='products'
+    paginate_by = 20  # در صورت نیاز
 
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category_id = self.request.GET.get('category')
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+        return queryset
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = Category.objects.all()
+        context['selected_category'] = self.request.GET.get('category')
         return context
+     
+
+
+   
     
 
 
@@ -57,12 +71,13 @@ class ProductByCategoryView(generic.ListView):
     model = Product
     template_name = 'product/product_list.html'
     context_object_name = 'products'
-
+    paginate_by = 28
     def get_queryset(self):
-        category_id = self.kwargs.get('category_id')
-        return Product.objects.filter(category_id=category_id)
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        descendants = self.category.get_descendants(include_self=True)
+        return Product.objects.filter(category__in=descendants).select_related("category")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.get(id=self.kwargs['category_id'])
+        context["category"] = self.category
         return context

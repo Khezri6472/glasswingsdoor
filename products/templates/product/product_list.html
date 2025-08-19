@@ -294,9 +294,9 @@
 								{% for product in products %}
 								<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
 									<div class="product-card mb-2 mx-res-0">
-										<div class="promotion-badge">
+										{% comment %} <div class="promotion-badge">
 											فروش ویژه
-										</div>
+										</div> {% endcomment %}
 										<div class="product-head">
 											<div class="rating-stars">
 												<i class="mdi mdi-star active"></i>
@@ -309,9 +309,14 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/NE02 3.jpg" %}" alt="Product Thumbnail">
-										</a>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
 												<a href="shop-single.html">{{product.name}}</a>
@@ -324,71 +329,53 @@
 								{% endfor %}
 							
 							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
-									</div>
-								</div>
-							</div>
+							
+					<div class="row">
+					<div class="col-12">
+						{% if is_paginated %}
+						<div class="pagination">
+
+							{# دکمه قبلی #}
+							{% if page_obj.has_previous %}
+							<a href="?page={{ page_obj.previous_page_number }}" class="prev">
+								<i class="mdi mdi-chevron-double-right"></i>
+							</a>
+							{% endif %}
+
+							{# شماره صفحات با ... #}
+							{% for num in page_obj.paginator.page_range %}
+							{% if num == page_obj.number %}
+								<a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+							{% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+								<a href="?page={{ num }}">{{ num }}</a>
+
+							{% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+								<a href="?page={{ num }}">{{ num }}</a>
+
+							{% elif num == 3 and page_obj.number > 4 %}
+								<span>...</span>
+
+							{% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+								<span>...</span>
+							{% endif %}
+							{% endfor %}
+
+							{# دکمه بعدی #}
+							{% if page_obj.has_next %}
+							<a href="?page={{ page_obj.next_page_number }}" class="next">
+								<i class="mdi mdi-chevron-double-left"></i>
+							</a>
+							{% endif %}
+
 						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-								{% for product in products %}
-								<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-									<div class="product-card mb-2 mx-res-0">
-										<div class="promotion-badge">
-											فروش ویژه
-										</div>
-										<div class="product-head">
-											<div class="rating-stars">
-												<i class="mdi mdi-star active"></i>
-												<i class="mdi mdi-star active"></i>
-												<i class="mdi mdi-star active"></i>
-												<i class="mdi mdi-star active"></i>
-												<i class="mdi mdi-star active"></i>
-											</div>
-											{% comment %} <div class="discount">
-												<span>20%</span>
-											</div> {% endcomment %}
-										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/gk2b 3.jpg" %}" alt="Product Thumbnail">
-										</a>
-										<div class="product-card-body">
-											<h5 class="product-title">
-												<a href="shop-single.html">{{product.name}}</a>
-											</h5>
-											<a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-											<span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-										</div>
-									</div>
-								</div>
-								{% endfor %}
-							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
-									</div>
-								</div>
-							</div>
+						{% endif %}
+					</div>
+					</div>
+			
+    </div>
+</div>
+
 						</div>
 						<div class="ah-tab-content dt-sl">
 							<div class="row mb-3 mx-0 px-res-0">
@@ -410,9 +397,14 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/gk2b 3.jpg" %}" alt="Product Thumbnail">
-										</a>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
 												<a href="shop-single.html">{{product.name}}</a>
@@ -425,20 +417,51 @@
 								{% endfor %}
 							</div>
 							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
-									</div>
-								</div>
-							</div>
+  <div class="col-12">
+    {% if is_paginated %}
+      <div class="pagination">
+
+        {# دکمه قبلی #}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+            <i class="mdi mdi-chevron-double-right"></i>
+          </a>
+        {% endif %}
+
+        {# شماره صفحات با ... #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num == 3 and page_obj.number > 4 %}
+            <span>...</span>
+
+          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+            <span>...</span>
+          {% endif %}
+        {% endfor %}
+
+        {# دکمه بعدی #}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="next">
+            <i class="mdi mdi-chevron-double-left"></i>
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+    </div>
+</div>
+
 						</div>
 						<div class="ah-tab-content dt-sl">
 							<div class="row mb-3 mx-0 px-res-0">
@@ -460,9 +483,14 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/fk15 2.jpg" %}" alt="Product Thumbnail">
-										</a>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
 												<a href="shop-single.html">{{product.name}}</a>
@@ -474,21 +502,50 @@
 								</div>
 								{% endfor %}
 							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
-									</div>
-								</div>
-							</div>
+<div class="row">
+  <div class="col-12">
+    {% if is_paginated %}
+      <div class="pagination">
+
+        {# دکمه قبلی #}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+            <i class="mdi mdi-chevron-double-right"></i>
+          </a>
+        {% endif %}
+
+        {# شماره صفحات با ... #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num == 3 and page_obj.number > 4 %}
+            <span>...</span>
+
+          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+            <span>...</span>
+          {% endif %}
+        {% endfor %}
+
+        {# دکمه بعدی #}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="next">
+            <i class="mdi mdi-chevron-double-left"></i>
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
 						</div>
 						<div class="ah-tab-content dt-sl">
 							<div class="row mb-3 mx-0 px-res-0">
@@ -510,9 +567,14 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/x5.jpg" %}" alt="Product Thumbnail">
-										</a>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
 												<a href="shop-single.html">{{product.name}}</a>
@@ -524,21 +586,50 @@
 								</div>
 								{% endfor %}
 							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
-									</div>
-								</div>
-							</div>
+<div class="row">
+  <div class="col-12">
+    {% if is_paginated %}
+      <div class="pagination">
+
+        {# دکمه قبلی #}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+            <i class="mdi mdi-chevron-double-right"></i>
+          </a>
+        {% endif %}
+
+        {# شماره صفحات با ... #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num == 3 and page_obj.number > 4 %}
+            <span>...</span>
+
+          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+            <span>...</span>
+          {% endif %}
+        {% endfor %}
+
+        {# دکمه بعدی #}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="next">
+            <i class="mdi mdi-chevron-double-left"></i>
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
 						</div>
 						<div class="ah-tab-content dt-sl">
 							<div class="row mb-3 mx-0 px-res-0">
@@ -560,9 +651,14 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										<a class="product-thumb" href="shop-single.html">
-											<img src="{% static "./assets/img/products/NE02 3.jpg" %}" alt="Product Thumbnail">
-										</a>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
 												<a href="shop-single.html">{{product.name}}</a>
@@ -574,21 +670,133 @@
 								</div>
 								{% endfor %}
 							</div>
-							<div class="row">
-								<div class="col-12">
-									<div class="pagination">
-										<a href="#" class="prev"><i
-												class="mdi mdi-chevron-double-right"></i></a>
-										<a href="#">1</a>
-										<a href="#" class="active-page">2</a>
-										<a href="#">3</a>
-										<a href="#">4</a>
-										<a href="#">...</a>
-										<a href="#">7</a>
-										<a href="#" class="next"><i class="mdi mdi-chevron-double-left"></i></a>
+<div class="row">
+  <div class="col-12">
+    {% if is_paginated %}
+      <div class="pagination">
+
+        {# دکمه قبلی #}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+            <i class="mdi mdi-chevron-double-right"></i>
+          </a>
+        {% endif %}
+
+        {# شماره صفحات با ... #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num == 3 and page_obj.number > 4 %}
+            <span>...</span>
+
+          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+            <span>...</span>
+          {% endif %}
+        {% endfor %}
+
+        {# دکمه بعدی #}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="next">
+            <i class="mdi mdi-chevron-double-left"></i>
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
+						</div>
+						<div class="ah-tab-content dt-sl">
+							<div class="row mb-3 mx-0 px-res-0">
+								{% for product in products %}
+								<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
+									<div class="product-card mb-2 mx-res-0">
+										{% comment %} <div class="promotion-badge">
+											فروش ویژه
+										</div> {% endcomment %}
+										<div class="product-head">
+											<div class="rating-stars">
+												<i class="mdi mdi-star active"></i>
+												<i class="mdi mdi-star active"></i>
+												<i class="mdi mdi-star active"></i>
+												<i class="mdi mdi-star active"></i>
+												<i class="mdi mdi-star active"></i>
+											</div>
+											{% comment %} <div class="discount">
+												<span>20%</span>
+											</div> {% endcomment %}
+										</div>
+										 <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
+										<div class="product-card-body">
+											<h5 class="product-title">
+												<a href="shop-single.html">{{product.name}}</a>
+											</h5>
+											<a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
+											<span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
+										</div>
 									</div>
 								</div>
+								{% endfor %}
 							</div>
+<div class="row">
+  <div class="col-12">
+    {% if is_paginated %}
+      <div class="pagination">
+
+        {# دکمه قبلی #}
+        {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
+            <i class="mdi mdi-chevron-double-right"></i>
+          </a>
+        {% endif %}
+
+        {# شماره صفحات با ... #}
+        {% for num in page_obj.paginator.page_range %}
+          {% if num == page_obj.number %}
+            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+
+          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+
+          {% elif num == 3 and page_obj.number > 4 %}
+            <span>...</span>
+
+          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+            <span>...</span>
+          {% endif %}
+        {% endfor %}
+
+        {# دکمه بعدی #}
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="next">
+            <i class="mdi mdi-chevron-double-left"></i>
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 						</div>
 					</div>
 				</div>

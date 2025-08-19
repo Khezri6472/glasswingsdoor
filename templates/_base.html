@@ -139,23 +139,23 @@
                                 <a class="nav-link" href="{% url "home" %}">{% trans "Home" %}</a>
                             </li>
                             <li class="list-item category-list">
-                                <a href="#"><i class="fal fa-bars ml-1"></i>{% trans "Product Categories" %}</a>
+                                <a href="{% url 'product_list' %}"><i class="fal fa-bars ml-1"></i>{% trans "Product Categories" %}</a>
                                
                                <ul>
                                  {% for category in category_menu %}
                                 <li>
-                                <a href="{% url 'products_by_category' category.id %}">{{category.title}}</a>
+                                <a href="{% url 'products_by_category' category.slug %}">{{category.title}}</a>
                                 {% if not category.is_leaf_node %}
                                     <ul class="row">
                                     {% for child in category.get_children %}
 
                                       {% if child.is_leaf_node  %}
                                         <li class="sublist--item">
-                                          <a href="{% url 'products_by_category' category.id %}">{{ child.title }}</a>
+                                          <a href="{% url 'products_by_category' child.slug %}">{{ child.title }}</a>
 
                                       {% else %}
                                       <li class="sublist--title">
-                                          <a href="{% url 'products_by_category' category.id %}">{{ child.title }}</a>
+                                          <a href="{% url 'products_by_category' child.slug %}">{{ child.title }}</a>
 
                                       {% endif %}
   
@@ -163,7 +163,7 @@
                                             {% comment %} <ul class="row"> {% endcomment %}
                                             {% for subchild in child.get_children %}
                                                 <li class="sublist--item">
-                                                <a href="{% url 'products_by_category' category.id %}"> {{ subchild.title }}</a>
+                                                <a href="{% url 'products_by_category' subchild.slug %}"> {{ subchild.title }}</a>
                                                   
                                                 </li>
                                             {% endfor %}
@@ -287,25 +287,25 @@
                                     
                                  {% for category in category_menu %}
                                  <li class="sub-menu">
-                                   <a href="{% url 'products_by_category' category.id %}">{{category.title}}</a>
+                                   <a href="{% url 'products_by_category' category.slug %}">{{category.title}}</a>
 
                                   {% if not category.is_leaf_node %}
                                     <ul>
                                     {% for child in category.get_children %}
                                     {% if child.is_leaf_node %}
                                     <li>
-                                         <a href="{% url 'products_by_category' category.id %}">{{ child.title }}</a>
+                                         <a href="{% url 'products_by_category' category.slug %}">{{ child.title }}</a>
   
                                       {% else %}
                                              <li class="sub-menu">
-                                              <a href="{% url 'products_by_category' category.id %}">{{ child.title }}</a>
+                                              <a href="{% url 'products_by_category' category.slug %}">{{ child.title }}</a>
                                     {% endif %}
   
                                         {% if not child.is_leaf_node %}
                                             <ul >
                                             {% for subchild in child.get_children %}
                                                 <li>
-                                                <a href="{% url 'products_by_category' category.id %}"> {{ subchild.title }}</a>
+                                                <a href="{% url 'products_by_category' category.slug %}"> {{ subchild.title }}</a>
                                                 </li>
                                             {% endfor %}
                                             </ul>
