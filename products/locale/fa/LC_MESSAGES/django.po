@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-06 00:30+0330\n"
-"PO-Revision-Date: 2025-06-02 22:05+0330\n"
+"PO-Revision-Date: 2025-08-22 19:38+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -397,7 +397,7 @@ msgstr "خیر"
 
 #: .\products\templates\product\product_detail.html:742
 msgid "Buyers of this product also purchased the following products:"
-msgstr "خریداران این محصول، محصولات زیر را نیز خریداری کرده‌اند:"
+msgstr "محصولات مرتبط:"
 
 #: .\products\templates\product\product_detail.html:743
 msgid "View All"

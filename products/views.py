@@ -3,6 +3,15 @@ from django.shortcuts import get_object_or_404,render
 from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q, Avg, Sum, Case, When, IntegerField, F
+from django.db.models.functions import Cast
+from products.models import Product, Comment, Category
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from django.http import JsonResponse
+from .forms import ProductSearchForm
+from .services.search import product_search
+from .models import Product
 import random
 
 from .models import Product,Category,Comment
@@ -29,10 +38,6 @@ class ProductListView(generic.ListView):
         context['selected_category'] = self.request.GET.get('category')
         return context
      
-
-
-   
-    
 
 
 class ProductDetailView(generic.DetailView):
@@ -80,4 +85,23 @@ class ProductByCategoryView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["category"] = self.category
+        return context
+    
+
+
+class ProductSearchListView(generic.ListView):
+    model = Product
+    template_name = 'product/product_list.html'
+    context_object_name = 'products'
+    paginate_by = 12  # هر صفحه 12 محصول
+
+    def get_queryset(self):
+        # استفاده از تابع جستجوی آماده
+        return product_search(self.request.GET)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # افزودن page_obj و is_paginated به context
+        context['page_obj'] = context['page_obj']  # همان object_list
+        context['is_paginated'] = context['is_paginated']
         return context

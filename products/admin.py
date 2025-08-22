@@ -48,6 +48,9 @@ class InventoryFilter(admin.SimpleListFilter):
 class TechnicalSpecificationInline(admin.TabularInline):  # یا admin.StackedInline
     model = models.TechnicalSpecification
     extra = 3  # تعداد ردیف‌های خالی پیش‌فرض 
+class ProductImageInLine(admin.TabularInline):
+    model = models.ProductImage
+    extra = 2
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -62,7 +65,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['name', ]
     }
-    inlines = [TechnicalSpecificationInline]  # ⬅ اضافه کردن این خط
+    inlines = [TechnicalSpecificationInline, ProductImageInLine] 
 
     def get_queryset(self, request):
         return super().get_queryset(request) \
@@ -150,10 +153,10 @@ class CommentAdmin(admin.ModelAdmin):
     # list_editable = ['key','value']
 
 
-@admin.register(models.ProductImage)
-class ProductImageAdmin(admin.ModelAdmin):
-    list_display=['product','alt_text']
-    list_per_page = 10
+# @admin.register(models.ProductImage)
+# class ProductImageAdmin(admin.ModelAdmin):
+#     list_display=['product','alt_text']
+#     list_per_page = 10
     # list_editable = ['product','alt_text']
 
 
