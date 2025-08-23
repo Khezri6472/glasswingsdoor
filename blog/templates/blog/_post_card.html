@@ -1,0 +1,11 @@
+<div class="card">
+  {% if post.main_image %}
+    <img src="{{ post.main_image.url }}" class="card-img-top" alt="{{ post.title }}">
+  {% endif %}
+  <div class="card-body">
+    <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+    <p class="text-muted">{{ post.published_at|date:"Y/m/d" }} • {{ post.author.get_full_name }}</p>
+    <p>{{ post.excerpt|default:post.content|striptags|truncatewords:25 }}</p>
+    <a href="{{ post.get_absolute_url }}">بیشتر بخوانید</a>
+  </div>
+</div>

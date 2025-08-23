@@ -105,3 +105,23 @@ class ProductSearchListView(generic.ListView):
         context['page_obj'] = context['page_obj']  # همان object_list
         context['is_paginated'] = context['is_paginated']
         return context
+    
+
+
+class SearchSuggestionsView(generic.View):
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get("q", "").strip()
+        if not q:
+            return JsonResponse({"results": []})
+
+        # فیلتر ۱۰ محصول حداکثر و انتخاب ۳ تا رندوم
+        products_qs = Product.objects.filter(name__icontains=q)[:10]
+        products_list = list(products_qs)
+        products = random.sample(products_list, min(5, len(products_list)))
+
+        results = [
+            {"id": p.id, "name": p.name, "url": p.get_absolute_url()}
+            for p in products
+        ]
+
+        return JsonResponse({"results": results})

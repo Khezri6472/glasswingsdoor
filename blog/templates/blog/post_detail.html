@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block content %}
+<article>
+  <h1>{{ post.title }}</h1>
+  <p class="text-muted">{{ post.published_at|date:"Y/m/d" }} • {{ post.author.get_full_name }}</p>
+  {% if post.main_image %}
+    <img src="{{ post.main_image.url }}" alt="{{ post.title }}" style="max-width:100%">
+  {% endif %}
+  <div class="post-content">
+    {{ post.content|safe }}
+  </div>
+</article>
+
+<section id="comments">
+  <h3>دیدگاه‌ها</h3>
+  {% for c in comments %}
+    <div class="comment">
+      <p><strong>{{ c.name or c.author.get_full_name }}</strong> — {{ c.created_at|date:"Y/m/d H:i" }}</p>
+      <p>{{ c.body }}</p>
+    </div>
+  {% empty %}
+    <p>هنوز دیدگاهی ثبت نشده.</p>
+  {% endfor %}
+</section>
+
+<section id="add-comment">
+  <h3>ثبت دیدگاه</h3>
+  <form action="{% url 'blog:post_comment' post.slug %}" method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button class="btn btn-primary">ارسال دیدگاه</button>
+  </form>
+</section>
+
+{% endblock %}

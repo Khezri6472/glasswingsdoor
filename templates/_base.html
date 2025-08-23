@@ -58,14 +58,14 @@
                         </div>
                         <div class="col-lg-6 col-md-5 hidden-sm">
                             <div class="search-area dt-sl">
-                                    <form action="{% url 'search_results' %}" method="get">
+                                    {% comment %} <form action="{% url 'search_results' %}" method="get">
                                     <input type="text" name="q" placeholder="{% trans "Search Products" %}" value="{{ request.GET.q }}">
                                     <button type="submit">Search</button>
-                                </form>
+                                </form> {% endcomment %}
 
-                                {% comment %} <form action="" class="search">
-                                    <input type="text"
-                                        placeholder="{% translate "Search for the product name, brand or category you are looking for…" %}">
+                                 <form action="{% url 'search_results' %}" method="get" class="search">
+                                    {% csrf_token %}
+                                    <input type="text" name="q" placeholder="{% translate "Search for the product name, brand or category you are looking for…" %}" value="{{ request.GET.q }}">
                                     <i class="far fa-search search-icon"></i>
                                     <button class="close-search-result" type="button"><i
                                             class="mdi mdi-close"></i></button>
@@ -74,7 +74,7 @@
                                             
                                         </ul>
                                     </div>
-                                </form> {% endcomment %}
+                                </form> 
                             </div>
                         </div>
                         <div class="col-md-4 col-6 topbar-left">
@@ -181,7 +181,7 @@
                                 <a class="nav-link" href="#">{% trans "Laminet" %}</a>
                             </li> {% endcomment %}
                             <li class="list-item">
-                                <a class="nav-link" href="#">{% trans "Blog" %}</a>
+                                <a href="{% url 'blog:post_list' %}">{% trans "Blog" %}</a>
                             </li>
                             <li class="list-item">
                                 <a class="nav-link" href="#">{% trans "Contact Us" %}</a>
@@ -766,4 +766,28 @@
     <script src="{% static "assets/js/vendor/theia-sticky-sidebar.min.js" %} "></script>
     <!-- Main JS File -->
     <script src="{% static "assets/js/main.js" %}"></script>
+
+            <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const input = document.querySelector(".search input[name='q']");
+            const resultsDiv = document.querySelector(".search-result ul");
+
+            input.addEventListener("keyup", function () {
+                const query = this.value.trim();
+                if (query.length < 2) {
+                    resultsDiv.innerHTML = "";
+                    return;
+                }
+
+                fetch(`/products/search/suggestions/?q=${encodeURIComponent(query)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        resultsDiv.innerHTML = "";
+                        data.results.forEach(item => {
+                            resultsDiv.innerHTML += `<li><a href="${item.url}">${item.name}</a></li>`;
+                        });
+                    });
+            });
+        });
+        </script>
 </body>
