@@ -2263,6 +2263,7 @@ section.slider-section .product-card {
     display: block;
     color: #404040;
     font-weight: bold;
+    text-align: center;
 }
 
 .hover-effect-img {

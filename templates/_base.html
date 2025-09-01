@@ -181,7 +181,8 @@
                                 <a class="nav-link" href="#">{% trans "Laminet" %}</a>
                             </li> {% endcomment %}
                             <li class="list-item">
-                                <a href="{% url 'blog:post_list' %}">{% trans "Blog" %}</a>
+                                <a href="#">{% trans "Blog" %}</a>
+                                {% comment %} <a href="{% url 'blog:post_list' %}">{% trans "Blog" %}</a> {% endcomment %}
                             </li>
                             <li class="list-item">
                                 <a class="nav-link" href="#">{% trans "Contact Us" %}</a>
