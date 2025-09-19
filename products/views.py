@@ -44,7 +44,8 @@ class ProductDetailView(generic.DetailView):
     model=Product
     template_name='product/product_detail.html'
     context_object_name='product_detail'
-
+    slug_field = "unit_code"           # اسم فیلد در مدل
+    slug_url_kwarg = "unit_code"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object

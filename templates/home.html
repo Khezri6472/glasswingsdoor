@@ -175,7 +175,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -185,7 +185,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.pk %}">{{product.name}}</a>
+                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -227,7 +227,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -237,7 +237,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.pk %}">{{product.name}}</a>
+                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -414,7 +414,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -424,7 +424,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.pk %}">{{product.name}}</a>
+                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -481,7 +481,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.pk %}">
+                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -491,7 +491,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.pk %}">{{product.name}}</a>
+                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -523,7 +523,7 @@
                                 <div class="col-12">
                                     <div class="card-horizontal-product border-bottom rounded-0">
                                         <div class="card-horizontal-product-thumb">
-                                            <a href="{% url 'product_detail'  product.pk %}">
+                                            <a href="{% url 'product_detail'  product.unit_code %}">
                                                  {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -534,7 +534,7 @@
                                         </div>
                                         <div class="card-horizontal-product-content">
                                             <div class="card-horizontal-product-title">
-                                                <a href="{% url 'product_detail'  product.pk %}">
+                                                <a href="{% url 'product_detail'  product.unit_code %}">
                                                     <h3>{{product.name}}</h3>
                                                 </a>
                                             </div>
@@ -549,7 +549,7 @@
                                                 <span>{{product.unit_price|persian_number}} {% trans "$" %}</span>
                                             </div>
                                             <div class="card-horizontal-product-buttons">
-                                                <a href=""{% url 'product_detail'  product.pk %}"" class="btn btn-outline-info">{% trans "Product Detail" %}</a>
+                                                <a href=""{% url 'product_detail'  product.unit_code %}"" class="btn btn-outline-info">{% trans "Product Detail" %}</a>
                                             </div>
                                         </div>
                                     </div>
