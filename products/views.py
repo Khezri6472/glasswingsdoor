@@ -41,17 +41,22 @@ class ProductListView(generic.ListView):
 
 
 class ProductDetailView(generic.DetailView):
-    model=Product
-    template_name='product/product_detail.html'
-    context_object_name='product_detail'
-    slug_field = "unit_code"           # اسم فیلد در مدل
-    slug_url_kwarg = "unit_code"
+    model = Product
+    template_name = 'product/product_detail.html'
+    context_object_name = 'product_detail'
+
+    def get_object(self, queryset=None):
+        unit_code = self.kwargs.get("unit_code")
+        slug = self.kwargs.get("slug")
+        return Product.objects.get( slug=slug ,unit_code=unit_code,)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object
         context['related_products'] = product.related_products.all()
         context['comment_form'] = CommentForm()
         return context
+
 
 # @login_required 
 class CommentCreateView(generic.CreateView):

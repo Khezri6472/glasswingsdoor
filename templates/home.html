@@ -11,6 +11,7 @@
  <!-- Start main-content -->
         <main class="main-content dt-sl mb-3">
             <div class="container main-container">
+                
                 <!-- Start Main-Slider -->
                 <div class="row mb-3">
                     <aside class="sidebar col-xl-2 col-lg-3 col-12 order-2 order-lg-1 pl-0 hidden-md">
@@ -142,165 +143,7 @@
                     </div>
                 </div>
                 <!-- End Main-Slider -->
-                <!-- Start Product-Slider -->
-                <div class="row">
-                    <div class="col-xl-10 col-lg-12">
-                        <section class="slider-section dt-sl mb-5">
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <div class="section-title text-sm-title title-wide no-after-title-wide">
-                                        <h2>{% trans "Best Sellers" %}</h2>
-                                        <a href="#">{% trans "View All" %}</a>
-                                    </div>
-                                </div>
-
-                                <!-- Start Product-Slider -->
-                                <div class="col-12 px-res-0">
-                                    <div class="product-carousel carousel-md owl-carousel owl-theme">
-                                         {% for product in products %}
-                        
-                                            <div class="item">
-                                                    <div class="product-card">
-                                                        <div class="product-head">
-                                                            <div class="rating-stars">
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                            </div>
-                                                            
-                                                            {% comment %} <div class="discount">
-                                                                <span>20%</span>
-                                                            </div> {% endcomment %}
-
-                                                        </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
-                                                            {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
-
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                                        </a>
-                                                        <div class="product-card-body">
-                                                            <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
-                                                            </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                         {% endfor %}
-                                    </div>
-                                </div>
-                                <!-- End Product-Slider -->
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 hidden-lg pr-0">
-                        <div class="widget-suggestion dt-sn border pt-3 mt-3">
-                            <div class="widget-suggestion-title">
-                                <img src="{% static 'assets/img/theme/suggestion-title.png' %} " alt="">
-                            </div>
-                            <div id="progressBar">
-                                <div class="slide-progress"></div>
-                            </div>
-                            <div id="suggestion-slider" class="owl-carousel owl-theme">
-                                {% for product in random_products %}
-                        
-                                            <div class="item">
-                                                    <div class="product-card">
-                                                        <div class="product-head">
-                                                            <div class="rating-stars">
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                            </div>
-                                                            
-                                                            {% comment %} <div class="discount">
-                                                                <span>20%</span>
-                                                            </div> {% endcomment %}
-
-                                                        </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
-                                                            {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
-
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                                        </a>
-                                                        <div class="product-card-body">
-                                                            <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
-                                                            </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                               {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Product-Slider -->
-                <!-- Start Banner -->
-                <div class="row mt-3 mb-5">
-                    <div class="col-sm-6 col-12 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/medium-banner-3.png' %} " alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-12 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/medium-banner-4.jpeg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Banner -->
-                <!-- Start Banner -->
-                <div class="row mt-3 mb-5">
-                    <div class="col-md-3 col-sm-6 col-6 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/sb1.png' %} " alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-6 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/sb2.png' %} " alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-6 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/sb3.png' %} " alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-6 mb-2">
-                        <div class="widget-banner">
-                            <a href="#">
-                                <img src="{% static 'assets/img/banner/sb4.png' %} " alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Banner -->
-                <!-- Start Category-Section -->
+                 <!-- Start Category-Section -->
                 <div class="row mt-3 mb-5">
                     <div class="col-12">
                         <div class="category-section dt-sn dt-sl border">
@@ -384,6 +227,165 @@
                 </div>
                 <!-- End Category-Section -->
                 <!-- Start Product-Slider -->
+                <div class="row">
+                    <div class="col-xl-10 col-lg-12">
+                        <section class="slider-section dt-sl mb-5">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <div class="section-title text-sm-title title-wide no-after-title-wide">
+                                        <h2>{% trans "Best Sellers" %}</h2>
+                                        <a href="#">{% trans "View All" %}</a>
+                                    </div>
+                                </div>
+
+                                <!-- Start Product-Slider -->
+                                <div class="col-12 px-res-0">
+                                    <div class="product-carousel carousel-md owl-carousel owl-theme">
+                                         {% for product in products %}
+                        
+                                            <div class="item">
+                                                    <div class="product-card">
+                                                        <div class="product-head">
+                                                            <div class="rating-stars">
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                            </div>
+                                                            
+                                                            {% comment %} <div class="discount">
+                                                                <span>20%</span>
+                                                            </div> {% endcomment %}
+
+                                                        </div>
+                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
+                                                        <div class="product-card-body">
+                                                            <h5 class="product-title">
+                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
+                                                            </h5>
+                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
+                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- End Product-Slider -->
+
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 hidden-lg pr-0">
+                        <div class="widget-suggestion dt-sn border pt-3 mt-3">
+                            <div class="widget-suggestion-title">
+                                <img src="{% static 'assets/img/theme/suggestion-title.png' %} " alt="">
+                            </div>
+                            <div id="progressBar">
+                                <div class="slide-progress"></div>
+                            </div>
+                            <div id="suggestion-slider" class="owl-carousel owl-theme">
+                                {% for product in random_products %}
+                        
+                                            <div class="item">
+                                                    <div class="product-card">
+                                                        <div class="product-head">
+                                                            <div class="rating-stars">
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                                <i class="mdi mdi-star active"></i>
+                                                            </div>
+                                                            
+                                                            {% comment %} <div class="discount">
+                                                                <span>20%</span>
+                                                            </div> {% endcomment %}
+
+                                                        </div>
+                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
+                                                            {% if product.main_image %}
+                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+
+                                                            {% else %}
+                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
+                                                            {% endif %}
+                                                        </a>
+                                                        <div class="product-card-body">
+                                                            <h5 class="product-title">
+                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
+                                                            </h5>
+                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
+                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                               {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Product-Slider -->
+                <!-- Start Banner -->
+                <div class="row mt-3 mb-5">
+                    <div class="col-sm-6 col-12 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/medium-banner-3.png' %} " alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/medium-banner-4.jpeg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Banner -->
+                <!-- Start Banner -->
+                <div class="row mt-3 mb-5">
+                    <div class="col-md-3 col-sm-6 col-6 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/sb1.png' %} " alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-6 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/sb2.png' %} " alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-6 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/sb3.png' %} " alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-6 mb-2">
+                        <div class="widget-banner">
+                            <a href="#">
+                                <img src="{% static 'assets/img/banner/sb4.png' %} " alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Banner -->
+                
+                <!-- Start Product-Slider -->
                 <section class="slider-section dt-sl mb-5">
                     <div class="row mb-3">
                         <div class="col-12">
@@ -414,7 +416,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -424,7 +426,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
+                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -481,7 +483,7 @@
                                                             </div> {% endcomment %}
 
                                                         </div>
-                                                        <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -491,7 +493,7 @@
                                                         </a>
                                                         <div class="product-card-body">
                                                             <h5 class="product-title">
-                                                                <a href="{% url 'product_detail'  product.unit_code %}">{{product.name}}</a>
+                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
                                                             </h5>
                                                             <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -523,7 +525,7 @@
                                 <div class="col-12">
                                     <div class="card-horizontal-product border-bottom rounded-0">
                                         <div class="card-horizontal-product-thumb">
-                                            <a href="{% url 'product_detail'  product.unit_code %}">
+                                            <a href="{{ product.get_absolute_url }}">
                                                  {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -534,7 +536,7 @@
                                         </div>
                                         <div class="card-horizontal-product-content">
                                             <div class="card-horizontal-product-title">
-                                                <a href="{% url 'product_detail'  product.unit_code %}">
+                                                <a href="{{ product.get_absolute_url }}">
                                                     <h3>{{product.name}}</h3>
                                                 </a>
                                             </div>
@@ -549,7 +551,7 @@
                                                 <span>{{product.unit_price|persian_number}} {% trans "$" %}</span>
                                             </div>
                                             <div class="card-horizontal-product-buttons">
-                                                <a href=""{% url 'product_detail'  product.unit_code %}"" class="btn btn-outline-info">{% trans "Product Detail" %}</a>
+                                                <a href="{{ product.get_absolute_url }}" class="btn btn-outline-info">{% trans "Product Detail" %}</a>
                                             </div>
                                         </div>
                                     </div>

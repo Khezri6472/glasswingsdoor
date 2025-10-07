@@ -309,7 +309,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -319,7 +319,7 @@
                                                         </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
-												<a href="shop-single.html">{{product.name}}</a>
+												<a href="{{ product.get_absolute_url }}">{{product.name}}</a>
 											</h5>
 											<a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
 											<span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -397,7 +397,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -407,7 +407,7 @@
                                                         </a>
 										<div class="product-card-body">
 											<h5 class="product-title">
-												<a href="shop-single.html">{{product.name}}</a>
+												<a href="{{ product.get_absolute_url }}">{{product.name}}</a>
 											</h5>
 											<a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
 											<span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
@@ -483,7 +483,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -567,7 +567,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -651,7 +651,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
@@ -735,7 +735,7 @@
 												<span>20%</span>
 											</div> {% endcomment %}
 										</div>
-										 <a class="product-thumb" href="{% url 'product_detail'  product.unit_code %}">
+										 <a class="product-thumb" href="{{ product.get_absolute_url }}">
                                                             {% if product.main_image %}
                                                             <img src="{{product.main_image.url}}" alt="Product Thumbnail">
 
