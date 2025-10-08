@@ -13,6 +13,10 @@ from .forms import ProductSearchForm
 from .services.search import product_search
 from .models import Product
 import random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 
 from .models import Product,Category,Comment
 from .forms import CommentForm
@@ -131,3 +135,34 @@ class SearchSuggestionsView(generic.View):
         ]
 
         return JsonResponse({"results": results})
+
+
+class UpdatePriceAPI(APIView):
+    def post(self, request):
+        unit_code = request.data.get('unit_code')
+        new_price = request.data.get('price')
+
+        try:
+            product = Product.objects.get(unit_code=unit_code)
+            product.unit_price = new_price
+            product.save()
+            return Response({'status': 'success', 'message': 'Price updated successfully.'}, status=status.HTTP_200_OK)
+        except Product.DoesNotExist:
+            return Response({'status': 'error', 'message': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class UpdateStockAPI(APIView):
+    def post(self, request):
+        unit_code = request.data.get('unit_code')
+        new_stock = request.data.get('stock')
+
+        try:
+            product = Product.objects.get(unit_code=unit_code)
+            product.inventory = new_stock
+            product.save()
+            return Response({'status': 'success', 'message': 'Stock updated successfully.'}, status=status.HTTP_200_OK)
+        except Product.DoesNotExist:
+            return Response({'status': 'error', 'message': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
+

@@ -19,6 +19,7 @@ setuptools = "*"
 django-ckeditor = "*"
 django-mptt = "*"
 django-widget-tweaks = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

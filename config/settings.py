@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'mptt',
     'widget_tweaks',
+    'rest_framework',
     
 
     'accounts',
