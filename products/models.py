@@ -44,6 +44,8 @@ class Product(models.Model):
     description = RichTextField(verbose_name=_('Description'))
     short_description = models.TextField(verbose_name=_('Short Description'))
     unit_price = models.PositiveIntegerField(verbose_name=_('Unit Price'))
+    user_price = models.PositiveIntegerField( default=0,verbose_name=_('User Price'))
+    special_code = models.CharField(max_length=10, blank=True,verbose_name=_('Special Code'))
     inventory = models.IntegerField(validators=[MinValueValidator(0)],verbose_name=_('Inventory'))
     datetime_created = models.DateTimeField(auto_now_add=True,verbose_name=_('Datetime Created'))
     datetime_modified = models.DateTimeField(auto_now=True,verbose_name=_('Datetime Modified'))
