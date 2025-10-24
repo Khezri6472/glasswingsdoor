@@ -166,8 +166,29 @@
                             <h2>{% trans "Product Code" %}:{{product_detail.unit_code}}</h2>
                         </div>
                         <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 dt-sl">
-                            <h2>{% trans "price" %} : <span class="price">{{product_detail.unit_price|persian_number}} {% trans "$" %}</span> </h2>
+                            <h2>
+                                {% trans "price" %} :
+                                {% if product_detail.inventory > 0 %}
+                                    {% if user.is_authenticated %}
+                                        <span class="price">
+                                            {{ product_detail.unit_price|persian_number }} {% trans "$" %}
+                                        </span>
+                                    {% else %}
+                                        <span class="price">
+                                            {{ product_detail.user_price|persian_number }} {% trans "$" %}
+                                        </span>
+                                    {% endif %}
+                                {% else %}
+                                <div>
+                                   <span class="price text-danger">
+                                        {% trans "Blank Inventory" %}
+                                    </span>
+                                </div>
+                                    
+                                {% endif %}
+                            </h2>
                         </div>
+
                         <div class="dt-sl mt-4">
                             <a href="#" class="btn-primary-cm btn-with-icon">
                                 <img src="{% static 'assets/img/theme/shopping-cart.png' %}" alt="">
@@ -746,49 +767,60 @@
                     </div>
                 </div>
 
-                <!-- Start Product-Slider -->
-                <div class="col-12">
-                    <div class="product-carousel carousel-lg owl-carousel owl-theme">
-                       {% for related in related_products %}
-                        
+            <!-- Start Product-Slider -->
+            <div class="col-12">
+                <div class="product-carousel carousel-lg owl-carousel owl-theme">
+                    {% for related in related_products %}
                         <div class="item">
-										<div class="product-card">
-											<div class="product-head">
-												<div class="rating-stars">
-													<i class="mdi mdi-star active"></i>
-													<i class="mdi mdi-star active"></i>
-													<i class="mdi mdi-star active"></i>
-													<i class="mdi mdi-star active"></i>
-													<i class="mdi mdi-star active"></i>
-												</div>
-												
-												{% comment %} <div class="discount">
-													<span>20%</span>
-												</div> {% endcomment %}
+                            <div class="product-card">
+                                <div class="product-head">
+                                    <div class="rating-stars">
+                                        <i class="mdi mdi-star active"></i>
+                                        <i class="mdi mdi-star active"></i>
+                                        <i class="mdi mdi-star active"></i>
+                                        <i class="mdi mdi-star active"></i>
+                                        <i class="mdi mdi-star active"></i>
+                                    </div>
+                                </div>
 
-											</div>
-											<a class="product-thumb" href="{{ product.get_absolute_url }}">
-												{% if related.main_image %}
-												<img src="{{related.main_image.url}}" alt="Product Thumbnail">
+                                <a class="product-thumb" href="{{ related.get_absolute_url }}">
+                                    {% if related.main_image %}
+                                        <img src="{{ related.main_image.url }}" alt="Product Thumbnail">
+                                    {% else %}
+                                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
+                                    {% endif %}
+                                </a>
 
-												{% else %}
-													<img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-												{% endif %}
-											</a>
-											<div class="product-card-body">
-												<h5 class="product-title">
-													<a href="{{ product.get_absolute_url }}">{{related.name}}</a>
-												</h5>
-												<a class="product-meta" href="shop-categories.html">{{related.category.title}}</a>
-												<span class="product-price">{{related.unit_price}} {% trans "$" %}</span>
-											</div>
-										</div>
-									</div>
-                        {% endfor %}
-                       
-                    </div>
+                                <div class="product-card-body">
+                                    <h5 class="product-title">
+                                        <a href="{{ related.get_absolute_url }}">{{ related.name }}</a>
+                                    </h5>
+                                    <a class="product-meta" href="{% url 'products_by_category' related.category.slug %}">{{ related.category.title }}</a>
+
+
+                                    {% if related.inventory > 0 %}
+                                        {% if user.is_authenticated %}
+                                            <span class="product-price">
+                                                {{ related.unit_price|persian_number }} {% trans "$" %}
+                                            </span>
+                                        {% else %}
+                                            <span class="product-price">
+                                                {{ related.user_price|persian_number }} {% trans "$" %}
+                                            </span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="product-price text-danger">
+                                            {% trans "Blank Inventory" %}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                <!-- End Product-Slider -->
+            </div>
+            <!-- End Product-Slider -->
+
 
             </div>
         </section>

@@ -141,15 +141,36 @@ class UpdatePriceAPI(APIView):
     def post(self, request):
         unit_code = request.data.get('unit_code')
         new_price = request.data.get('price')
+        user_price = request.data.get('user_price')  
+
+        if not unit_code:
+            return Response({'status': 'error', 'message': 'unit_code is required.'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             product = Product.objects.get(unit_code=unit_code)
-            product.unit_price = new_price
+
+            # اگر price فرستاده شده بود، آپدیت کن
+            if new_price is not None:
+                product.unit_price = new_price
+
+            # اگر user_price فرستاده شده بود، آپدیت کن
+            if user_price is not None:
+                product.user_price = user_price
+
             product.save()
-            return Response({'status': 'success', 'message': 'Price updated successfully.'}, status=status.HTTP_200_OK)
+
+            return Response({
+                'status': 'success',
+                'message': 'Price updated successfully.',
+                'data': {
+                    'unit_code': unit_code,
+                    'unit_price': product.unit_price,
+                    'user_price': product.user_price
+                }
+            }, status=status.HTTP_200_OK)
+
         except Product.DoesNotExist:
             return Response({'status': 'error', 'message': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
-
 
 class UpdateStockAPI(APIView):
     def post(self, request):

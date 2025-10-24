@@ -54,9 +54,9 @@ class ProductImageInLine(admin.TabularInline):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id','unit_code', 'name', 'inventory', 'unit_price', 'inventory_status', 'product_category', 'num_of_comments']
+    list_display = ['id','unit_code', 'name', 'inventory', 'unit_price','user_price', 'inventory_status', 'product_category', 'num_of_comments']
     list_per_page = 10
-    list_editable = ['unit_price']
+    list_editable = ['unit_price','user_price', 'inventory']
     list_select_related = ['category']
     list_filter = ['datetime_created', InventoryFilter]
     actions = ['clear_inventory']

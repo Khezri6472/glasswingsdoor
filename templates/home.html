@@ -238,48 +238,59 @@
                                     </div>
                                 </div>
 
-                                <!-- Start Product-Slider -->
-                                <div class="col-12 px-res-0">
-                                    <div class="product-carousel carousel-md owl-carousel owl-theme">
-                                         {% for product in products %}
-                        
-                                            <div class="item">
-                                                    <div class="product-card">
-                                                        <div class="product-head">
-                                                            <div class="rating-stars">
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                            </div>
-                                                            
-                                                            {% comment %} <div class="discount">
-                                                                <span>20%</span>
-                                                            </div> {% endcomment %}
+                                  <!-- Start Product-Slider -->
+                    <div class="col-12 px-res-0">
+                        <div class="product-carousel carousel-md owl-carousel owl-theme">
+                            {% for product in products %}
+                                <div class="item">
+                                    <div class="product-card">
+                                        <div class="product-head">
+                                            <div class="rating-stars">
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star-half"></i>
+                                            </div>
+                                        </div>
 
-                                                        </div>
-                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                                                            {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
+                                            {% if product.main_image %}
+                                                <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
+                                            {% else %}
+                                                <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
+                                            {% endif %}
+                                        </a>
 
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                                        </a>
-                                                        <div class="product-card-body">
-                                                            <h5 class="product-title">
-                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
-                                                            </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                         {% endfor %}
+                                        <div class="product-card-body">
+                                            <h5 class="product-title">
+                                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                            </h5>
+                                            {% comment %} <a class="product-meta" href="shop-categories.html">{{ product.category.title }}</a> {% endcomment %}
+                                            <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
+                                             
+                                            {% if product.inventory > 0 %}
+                                                {% if user.is_authenticated %}
+                                                    <span class="product-price">
+                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="product-price">
+                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% endif %}
+                                            {% else %}
+                                                <span class="product-price text-danger">
+                                                    {% trans "Blank Inventory" %}
+                                                </span>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- End Product-Slider -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- End Product-Slider -->
 
                             </div>
                         </section>
@@ -323,7 +334,8 @@
                                                             <h5 class="product-title">
                                                                 <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
                                                             </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
+                                                           <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
+                                                            
                                                             <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
                                                         </div>
                                                     </div>
@@ -395,48 +407,59 @@
                             </div>
                         </div>
 
-                        <!-- Start Product-Slider -->
-                         <div class="col-12 px-res-0">
-                                    <div class="product-carousel carousel-md owl-carousel owl-theme">
-                                         {% for product in products %}
-                        
-                                            <div class="item">
-                                                    <div class="product-card">
-                                                        <div class="product-head">
-                                                            <div class="rating-stars">
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                            </div>
-                                                            
-                                                            {% comment %} <div class="discount">
-                                                                <span>20%</span>
-                                                            </div> {% endcomment %}
+                     <!-- Start Product-Slider -->
+                    <div class="col-12 px-res-0">
+                        <div class="product-carousel carousel-md owl-carousel owl-theme">
+                            {% for product in products %}
+                                <div class="item">
+                                    <div class="product-card">
+                                        <div class="product-head">
+                                            <div class="rating-stars">
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star-half"></i>
+                                            </div>
+                                        </div>
 
-                                                        </div>
-                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                                                            {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
+                                            {% if product.main_image %}
+                                                <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
+                                            {% else %}
+                                                <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
+                                            {% endif %}
+                                        </a>
 
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                                        </a>
-                                                        <div class="product-card-body">
-                                                            <h5 class="product-title">
-                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
-                                                            </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                         {% endfor %}
+                                        <div class="product-card-body">
+                                            <h5 class="product-title">
+                                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                            </h5>
+                                            {% comment %} <a class="product-meta" href="shop-categories.html">{{ product.category.title }}</a> {% endcomment %}
+                                            <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
+                                           
+                                            {% if product.inventory > 0 %}
+                                                {% if user.is_authenticated %}
+                                                    <span class="product-price">
+                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="product-price">
+                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% endif %}
+                                            {% else %}
+                                                <span class="product-price text-danger">
+                                                    {% trans "Blank Inventory" %}
+                                                </span>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                        <!-- End Product-Slider -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- End Product-Slider -->
 
                     </div>
                 </section>
@@ -462,48 +485,59 @@
                             </div>
                         </div>
 
-                         <!-- Start Product-Slider -->
-                         <div class="col-12 px-res-0">
-                                    <div class="product-carousel carousel-md owl-carousel owl-theme">
-                                         {% for product in products %}
-                        
-                                            <div class="item">
-                                                    <div class="product-card">
-                                                        <div class="product-head">
-                                                            <div class="rating-stars">
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star active"></i>
-                                                                <i class="mdi mdi-star-half "></i>
-                                                            </div>
-                                                            
-                                                            {% comment %} <div class="discount">
-                                                                <span>20%</span>
-                                                            </div> {% endcomment %}
+                   <!-- Start Product-Slider -->
+                    <div class="col-12 px-res-0">
+                        <div class="product-carousel carousel-md owl-carousel owl-theme">
+                            {% for product in products %}
+                                <div class="item">
+                                    <div class="product-card">
+                                        <div class="product-head">
+                                            <div class="rating-stars">
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star active"></i>
+                                                <i class="mdi mdi-star-half"></i>
+                                            </div>
+                                        </div>
 
-                                                        </div>
-                                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                                                            {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
+                                        <a class="product-thumb" href="{{ product.get_absolute_url }}">
+                                            {% if product.main_image %}
+                                                <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
+                                            {% else %}
+                                                <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
+                                            {% endif %}
+                                        </a>
 
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                                        </a>
-                                                        <div class="product-card-body">
-                                                            <h5 class="product-title">
-                                                                <a href="{{ product.get_absolute_url }}">{{product.name}}</a>
-                                                            </h5>
-                                                            <a class="product-meta" href="shop-categories.html">{{product.category.title}}</a>
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                         {% endfor %}
+                                        <div class="product-card-body">
+                                            <h5 class="product-title">
+                                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                            </h5>
+                                            <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
+
+                                            {% if product.inventory > 0 %}
+                                                {% if user.is_authenticated %}
+                                                    <span class="product-price">
+                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="product-price">
+                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                    </span>
+                                                {% endif %}
+                                            {% else %}
+                                                <span class="product-price text-danger">
+                                                    {% trans "Blank Inventory" %}
+                                                </span>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
-                        <!-- End Product-Slider -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- End Product-Slider -->
+
 
                     </div>
                 </section>
@@ -517,52 +551,65 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row mb-3">
                         {% for product in products %}
-                        
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 pt-4">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card-horizontal-product border-bottom rounded-0">
-                                        <div class="card-horizontal-product-thumb">
-                                            <a href="{{ product.get_absolute_url }}">
-                                                 {% if product.main_image %}
-                                                            <img src="{{product.main_image.url}}" alt="Product Thumbnail">
-
-                                                            {% else %}
-                                                                <img src="{% static "assets/img/no-product-image.jpeg" %}" alt="Product Thumbnail">
-                                                            {% endif %}
-                                            </a>
-                                        </div>
-                                        <div class="card-horizontal-product-content">
-                                            <div class="card-horizontal-product-title">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 pt-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card-horizontal-product border-bottom rounded-0">
+                                            <div class="card-horizontal-product-thumb">
                                                 <a href="{{ product.get_absolute_url }}">
-                                                    <h3>{{product.name}}</h3>
+                                                    {% if product.main_image %}
+                                                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
+                                                    {% else %}
+                                                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
+                                                    {% endif %}
                                                 </a>
                                             </div>
-                                            <div class="rating-stars">
-                                                <i class="mdi mdi-star active"></i>
-                                                <i class="mdi mdi-star active"></i>
-                                                <i class="mdi mdi-star active"></i>
-                                                <i class="mdi mdi-star active"></i>
-                                                <i class="mdi mdi-star"></i>
-                                            </div>
-                                            <div class="card-horizontal-product-price">
-                                                <span>{{product.unit_price|persian_number}} {% trans "$" %}</span>
-                                            </div>
-                                            <div class="card-horizontal-product-buttons">
-                                                <a href="{{ product.get_absolute_url }}" class="btn btn-outline-info">{% trans "Product Detail" %}</a>
+
+                                            <div class="card-horizontal-product-content">
+                                                <div class="card-horizontal-product-title">
+                                                    <a href="{{ product.get_absolute_url }}">
+                                                        <h3>{{ product.name }}</h3>
+                                                    </a>
+                                                </div>
+
+                                                <div class="rating-stars">
+                                                    <i class="mdi mdi-star active"></i>
+                                                    <i class="mdi mdi-star active"></i>
+                                                    <i class="mdi mdi-star active"></i>
+                                                    <i class="mdi mdi-star active"></i>
+                                                    <i class="mdi mdi-star"></i>
+                                                </div>
+
+                                                <div class="card-horizontal-product-price">
+                                                    {% if product.inventory > 0 %}
+                                                        {% if user.is_authenticated %}
+                                                            <span>{{ product.unit_price|persian_number }} {% trans "$" %}</span>
+                                                        {% else %}
+                                                            <span>{{ product.user_price|persian_number }} {% trans "$" %}</span>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <span class="text-danger">{% trans "Blank Inventory" %}</span>
+                                                    {% endif %}
+                                                </div>
+
+                                                <div class="card-horizontal-product-buttons">
+                                                    <a href="{{ product.get_absolute_url }}" class="btn btn-outline-info">
+                                                        {% trans "Product Detail" %}
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                       
                         {% endfor %}
                     </div>
                 </section>
                 <!-- End Feature-Product -->
+
                 <!-- Start Brand-Slider -->
                 <section class="slider-section dt-sl mb-5">
                     <div class="row">
