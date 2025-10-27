@@ -278,8 +278,7 @@
                                 <li>
                                     <a href="{% url "home" %}">{% trans "Home" %}</a>
                                 </li>
-
-                                    
+   
                                  {% for category in category_menu %}
                                  <li class="sub-menu">
                                    <a href="{% url 'products_by_category' category.slug %}">{{category.title}}</a>
@@ -289,18 +288,18 @@
                                     {% for child in category.get_children %}
                                     {% if child.is_leaf_node %}
                                     <li>
-                                         <a href="{% url 'products_by_category' category.slug %}">{{ child.title }}</a>
+                                         <a href="{% url 'products_by_category' child.slug %}">{{ child.title }}</a>
   
                                       {% else %}
                                              <li class="sub-menu">
-                                              <a href="{% url 'products_by_category' category.slug %}">{{ child.title }}</a>
+                                              <a href="{% url 'products_by_category' child.slug %}">{{ child.title }}</a>
                                     {% endif %}
   
                                         {% if not child.is_leaf_node %}
                                             <ul >
                                             {% for subchild in child.get_children %}
                                                 <li>
-                                                <a href="{% url 'products_by_category' category.slug %}"> {{ subchild.title }}</a>
+                                                <a href="{% url 'products_by_category' subchild.slug %}"> {{ subchild.title }}</a>
                                                 </li>
                                             {% endfor %}
                                             </ul>
