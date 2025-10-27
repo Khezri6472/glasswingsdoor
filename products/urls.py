@@ -1,9 +1,10 @@
 from django.urls import path,re_path
 
-from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI
+from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI,HomeView
 
 urlpatterns = [
-    path('', ProductListView.as_view(),name='products'),
+    path('', HomeView.as_view(), name='home'),
+    path('products/', ProductListView.as_view(),name='products'),
     path('products/', ProductListView.as_view(), name='product_list'),
     re_path(r'^products/category/(?P<slug>[-\w\u0600-\u06FF]+)/$', 
             ProductByCategoryView.as_view(), 

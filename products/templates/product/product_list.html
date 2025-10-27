@@ -1,903 +1,425 @@
- {% extends "_base.html" %}
-{% load static %}
-{% load i18n %}
+{% extends "_base.html" %}
+ {% load static %}
+  {% load i18n %} 
 {% load persian_numbers_tags %}
+ {% block title %} product list {% endblock title %}
+ {%block content %}
+<!-- Start main-content -->
+<main class="main-content dt-sl mb-3">
+  <div class="header-cover">
+    <div class="promotion-header-img"></div>
+  </div>
+  <div class="container main-container mt-5">
+    <div class="row search-amazing-content">
+      <!-- Start Sidebar -->
+      <div
+        class="col-lg-3 col-md-12 col-sm-12 sticky-sidebar filter-options-sidebar"
+      >
+        <div class="d-md-none">
+          <div class="header-filter-options">
+            <span
+              >{% trans "Advance Search" %}<i class="fad fa-sliders-h"></i
+            ></span>
+            <button class="btn-close-filter-sidebar">
+              <i class="fal fa-times"></i>
+            </button>
+          </div>
+        </div>
 
-{% block title %}
- product list
-{% endblock title %}
+        <div class="dt-sn dt-sn--box mb-3">
+          <form action="">
+            {% csrf_token %}
+            <div class="col-12">
+              <div
+                class="section-title text-sm-title title-wide mb-1 no-after-title-wide"
+              >
+                <h2>{% trans "Product Filter" %}</h2>
+              </div>
+            </div>
 
-{% block content %}
- <!-- Start main-content -->
- <main class="main-content dt-sl mb-3">
-	<div class="header-cover">
-		<div class="promotion-header-img"></div>
-	</div>
-	<div class="container main-container mt-5">
-		<div class="row search-amazing-content">
-			<!-- Start Sidebar -->
-			 
-			<div class="col-lg-3 col-md-12 col-sm-12 sticky-sidebar filter-options-sidebar">
-				<div class="d-md-none">
-					<div class="header-filter-options">
-						<span>{% trans "Advance Search" %}<i class="fad fa-sliders-h"></i></span>
-						<button class="btn-close-filter-sidebar"><i class="fal fa-times"></i></button>
-					</div>
-				</div>
-				<div class="dt-sn dt-sn--box mb-3">
-					<form action="">
-						{% csrf_token %}
-						<div class="col-12">
-							<div class="section-title text-sm-title title-wide mb-1 no-after-title-wide">
-								<h2>{% trans "Product Filter" %}</h2>
-							</div>
-						</div>
-						<div class="col-12 mb-3">
-							<div class="widget-search">
-								<input type="text" name="s"
-									placeholder="{% trans "Write Products Name" %}">
-								<button class="btn-search-widget">
-									<img src="{% static "./assets/img/theme/search.png" %}" alt="">
-								</button>
-							</div>
-						</div>
-						<div class="col-12 filter-product mb-3">
-							<div class="accordion" id="accordionExample">
-								<div class="card">
-									<div class="card-header" id="headingOne">
-										<h2 class="mb-0">
-											<button class="btn btn-block text-right collapsed" type="button"
-												data-toggle="collapse" data-target="#collapseOne"
-												aria-expanded="false" aria-controls="collapseOne">
-												{% trans "Product Category" %}
-												<i class="mdi mdi-chevron-down"></i>
-											</button>
-										</h2>
-									</div>
-									<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-										data-parent="#accordionExample">
-										<div class="card-body">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck1">
-												<label class="custom-control-label"
-													for="customCheck1">{% trans "All Products" %}</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck2">
-												<label class="custom-control-label" for="customCheck2">{% trans "Operator" %}</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck3">
-												<label class="custom-control-label" for="customCheck3">{% trans "Slat" %}
-													</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck4">
-												<label class="custom-control-label" for="customCheck4">{% trans "Cover" %}
-													</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck5">
-												<label class="custom-control-label" for="customCheck5">
-													{% trans "Pasar" %}</label>
-											</div>
+            <div class="col-12 mb-3">
+              <div class="widget-search">
+                <input type="text" name="s" placeholder="{% trans "Write
+                Products Name" %}">
+                <button class="btn-search-widget">
+                  <img
+                    src="{% static 'assets/img/theme/search.png' %}"
+                    alt=""
+                  />
+                </button>
+              </div>
+            </div>
 
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck6">
-												<label class="custom-control-label" for="customCheck6">
-													{% trans "Rail" %}</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck7">
-												<label class="custom-control-label"
-													for="customCheck7">{% trans "Fitting" %}</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								{% comment %} <div class="card">
-									<div class="card-header" id="headingTwo">
-										<h2 class="mb-0">
-											<button class="btn btn-block text-right collapsed" type="button"
-												data-toggle="collapse" data-target="#collapseTwo"
-												aria-expanded="false" aria-controls="collapseTwo">
-												برند
-												<i class="mdi mdi-chevron-down"></i>
-											</button>
-										</h2>
-									</div>
-									<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-										data-parent="#accordionExample">
-										<div class="card-body">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck7">
-												<label class="custom-control-label"
-													for="customCheck7">همه</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck8">
-												<label class="custom-control-label"
-													for="customCheck8">پوما</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck9">
-												<label class="custom-control-label"
-													for="customCheck9">آدیداس</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck10">
-												<label class="custom-control-label"
-													for="customCheck10">نایک</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header" id="headingThree">
-										<h2 class="mb-0">
-											<button class="btn btn-block text-right collapsed" type="button"
-												data-toggle="collapse" data-target="#collapseThree"
-												aria-expanded="false" aria-controls="collapseThree">
-												فروشنده
-												<i class="mdi mdi-chevron-down"></i>
-											</button>
-										</h2>
-									</div>
-									<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-										data-parent="#accordionExample">
-										<div class="card-body">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck11">
-												<label class="custom-control-label"
-													for="customCheck11">همه</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck12">
-												<label class="custom-control-label" for="customCheck12">دیدی
-													کالا</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck13">
-												<label class="custom-control-label" for="customCheck13">فروشنده
-													رسمی برند</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header" id="headingFour">
-										<h2 class="mb-0">
-											<button class="btn btn-block text-right collapsed" type="button"
-												data-toggle="collapse" data-target="#collapseFour"
-												aria-expanded="false" aria-controls="collapseFour">
-												رنگها
-												<i class="mdi mdi-chevron-down"></i>
-											</button>
-										</h2>
-									</div>
-									<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-										data-parent="#accordionExample">
-										<div class="card-body">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck14">
-												<label class="custom-control-label"
-													for="customCheck14">مشکی</label>
-												<span class="filter-color"
-													style="background-color: rgb(0,0,0)"></span>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck15">
-												<label class="custom-control-label" for="customCheck15">نوک
-													مدادی</label>
-												<span class="filter-color"
-													style="background-color: rgb(105,105,105)"></span>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck16">
-												<label class="custom-control-label" for="customCheck16">آبی
-													روشن</label>
-												<span class="filter-color"
-													style="background-color: rgb(64,170,255)"></span>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck17">
-												<label class="custom-control-label" for="customCheck17">نقره
-													ای</label>
-												<span class="filter-color"
-													style="background-color: rgb(222,222,222)"></span>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck18">
-												<label class="custom-control-label"
-													for="customCheck18">زرد</label>
-												<span class="filter-color"
-													style="background-color: rgb(255,255,0)"></span>
-											</div>
-										</div>
-									</div>
-								</div> {% endcomment %}
-							</div>
-						</div>
-						{% comment %} <div class="col-12 mb-4">
-							<div class="section-title text-sm-title title-wide no-after-title-wide mb-1">
-								<h2>{% trans "Product Price Filter:" %}</h2>
-							</div>
-							<div class="mt-2 mb-2">
-								<div id="slider-non-linear-step"></div>
-							</div>
-							<div class="mt-2 mb-2 text-center pt-2">
-								<span>{% trans "Price" %}: </span>
-								<span class="example-value-info" id="slider-non-linear-step-value"></span> {% trans "$" %}
-							</div>
-						</div> {% endcomment %}
-						<div class="col-12 mb-3">
-							<div class="parent-switcher">
-								<label class="ui-statusswitcher">
-									<input type="checkbox" id="switcher-1">
-									<span class="ui-statusswitcher-slider">
-										<span class="ui-statusswitcher-slider-toggle"></span>
-									</span>
-								</label>
-								<label class="label-switcher" for="switcher-1">{% trans "Only Exist Products" %}</label>
-							</div>
-						</div>
-						<div class="col-12">
-							<button class="btn btn-info btn-block" type="submit">
-								{% trans "Filter" %}
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+            <div class="col-12 filter-product mb-3">
+              <div class="accordion" id="accordionExample">
+                {% comment %}
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button
+                        class="btn btn-block text-right collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        {% trans "Oprator Type" %}
+                        <i class="mdi mdi-chevron-down"></i>
+                      </button>
+                    </h2>
+                  </div>
 
-			<!-- End Sidebar -->
-			<!-- Start Content -->
-			<div class="col-lg-9 col-md-12 col-sm-12 search-card-res">
-				<div class="d-md-none">
-					<button class="btn-filter-sidebar">
-						جستجوی پیشرفته <i class="fad fa-sliders-h"></i>
-					</button>
-				</div>
-				<div class="dt-sl dt-sn px-0 search-amazing-tab">
-					<div class="ah-tab-wrapper dt-sl">
-						<div class="ah-tab dt-sl">
-							<a class="ah-tab-item" data-ah-tab-active="true" href="">{% trans "Related Product" %}</a>
-							<a class="ah-tab-item" href="">{% trans "Top View" %}</a>
-							<a class="ah-tab-item" href="">{% trans "New Products" %}</a>
-							<a class="ah-tab-item" href="">{% trans "Best Seals" %}</a>
-							<a class="ah-tab-item" href="">ارزان ترین</a>
-							<a class="ah-tab-item" href="">گران ترین</a>
-						</div>
-					</div>
-					<div class="ah-tab-content-wrapper dt-sl px-res-0">
-						<div class="ah-tab-content dt-sl" data-ah-tab-active="true">
-							<div class="row mb-3 mx-0 px-res-0">
-						{% for product in products %}
-							<div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-								<div class="product-card mb-2 mx-res-0">
-									{% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-									
-									<div class="product-head">
-										<div class="rating-stars">
-											<i class="mdi mdi-star active"></i>
-											<i class="mdi mdi-star active"></i>
-											<i class="mdi mdi-star active"></i>
-											<i class="mdi mdi-star active"></i>
-											<i class="mdi mdi-star active"></i>
-										</div>
-										{% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-									</div>
+                  <div
+                    id="collapseOne"
+                    class="collapse"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="Oprator"
+                          id="Opratorid"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="Opratorid"
+                          >{% trans "Sliding" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >{% trans "Telescopy 1 Side" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >{% trans "Telescopy 1 Side" %}</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endcomment %} {% comment %}
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button
+                        class="btn btn-block text-right collapsed"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#collapseOne"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        {% trans "Meters" %}
+                        <i class="mdi mdi-chevron-down"></i>
+                      </button>
+                    </h2>
+                  </div>
 
-									<a class="product-thumb" href="{{ product.get_absolute_url }}">
-										{% if product.main_image %}
-											<img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-										{% else %}
-											<img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-										{% endif %}
-									</a>
+                  <div
+                    id="collapseOne"
+                    class="collapse"
+                    aria-labelledby="headingOne"
+                    data-parent="#accordionExample"
+                  >
+                    <div class="card-body">
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="Size"
+                          id="sizeId"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="sizeId"
+                          >1.5 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >2 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >2.5 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >3 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >3.5 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >4 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >5 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >6 {% trans "Meter" %}</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          name="category"
+                          id="cat_all"
+                          value=""
+                        />
+                        <label class="custom-control-label" for="cat_all"
+                          >7 {% trans "Meter" %}</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endcomment %}
+              </div>
+            </div>
 
-									<div class="product-card-body">
-										<h5 class="product-title">
-											<a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-										</h5>
-								  <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
+            <div class="col-12 mb-3">
+              <div class="parent-switcher">
+                <label class="ui-statusswitcher">
+                  <input type="checkbox" id="switcher-1" />
+                  <span class="ui-statusswitcher-slider">
+                    <span class="ui-statusswitcher-slider-toggle"></span>
+                  </span>
+                </label>
+                <label class="label-switcher" for="switcher-1"
+                  >{% trans "Only Exist Products" %}</label
+                >
+              </div>
+            </div>
 
+            <div class="col-12">
+              <button class="btn btn-info btn-block" type="submit">
+                {% trans "Filter" %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Sidebar -->
 
-										{% if product.inventory > 0 %}
-											{% if user.is_authenticated %}
-												<span class="product-price">
-													{{ product.unit_price|persian_number }} {% trans "$" %}
-												</span>
-											{% else %}
-												<span class="product-price">
-													{{ product.user_price|persian_number }} {% trans "$" %}
-												</span>
-											{% endif %}
-										{% else %}
-											<span class="product-price text-danger">
-												{% trans "Blank Inventory" %}
-											</span>
-										{% endif %}
-									</div>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
+      <!-- Start Content -->
+      <div class="col-lg-9 col-md-12 col-sm-12 search-card-res">
+        <div class="d-md-none">
+          <button class="btn-filter-sidebar">
+            جستجوی پیشرفته <i class="fad fa-sliders-h"></i>
+          </button>
+        </div>
 
-							
-					<div class="row">
-					<div class="col-12">
-						{% if is_paginated %}
-						<div class="pagination">
+        <div class="dt-sl dt-sn px-0 search-amazing-tab">
+          <div class="ah-tab-wrapper dt-sl">
+            <div class="ah-tab dt-sl">
+              <a class="ah-tab-item" data-ah-tab-active="true" href=""
+                >{% trans "Related Product" %}</a
+              >
+              <a class="ah-tab-item" href="">{% trans "Top View" %}</a>
+              <a class="ah-tab-item" href="">{% trans "New Products" %}</a>
+              <a class="ah-tab-item" href="">{% trans "Best Seals" %}</a>
+              <a class="ah-tab-item" href="">ارزان ترین</a>
+              <a class="ah-tab-item" href="">گران ترین</a>
+            </div>
+          </div>
 
-							{# دکمه قبلی #}
-							{% if page_obj.has_previous %}
-							<a href="?page={{ page_obj.previous_page_number }}" class="prev">
-								<i class="mdi mdi-chevron-double-right"></i>
-							</a>
-							{% endif %}
+          <div class="ah-tab-content-wrapper dt-sl px-res-0">
+            <div class="ah-tab-content dt-sl" data-ah-tab-active="true">
+              <!-- products grid -->
+              <div class="row mb-3 mx-0 px-res-0">
+                {% for product in products %}
+                <div
+                  class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0"
+                >
+                  <div class="product-card mb-2 mx-res-0">
+                    <div class="product-head">
+                      <div class="rating-stars">
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                      </div>
+                    </div>
 
-							{# شماره صفحات با ... #}
-							{% for num in page_obj.paginator.page_range %}
-							{% if num == page_obj.number %}
-								<a href="?page={{ num }}" class="active-page">{{ num }}</a>
+                    <a
+                      class="product-thumb"
+                      href="{{ product.get_absolute_url }}"
+                    >
+                      {% if product.main_image %}
+                      <img src="{{ product.main_image.url }}" alt="Product Thumbnail"
+                      />
+                      {% else %}
+                      <img
+                        src="{% static 'assets/img/no-product-image.jpeg' %}"
+                        alt="Product Thumbnail"
+                      />
+                      {% endif %}
+                    </a>
 
-							{% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-								<a href="?page={{ num }}">{{ num }}</a>
+                    <div class="product-card-body">
+                      <h5 class="product-title">
+                        <a href="{{ product.get_absolute_url }}"
+                          >{{ product.name }}</a
+                        >
+                      </h5>
+                      <a
+                        class="product-meta"
+                        href="{% url 'products_by_category' product.category.slug %}"
+                        >{{ product.category.title }}</a
+                      >
 
-							{% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-								<a href="?page={{ num }}">{{ num }}</a>
+                      {% if product.inventory > 0 %}
+                       {% if user.is_authenticated %}
+                      <span class="product-price"
+                        >{{ product.unit_price|persian_number }} {% trans "$" %}</span
+                      >
+                      {% else %}
+                      <span class="product-price"
+                        >{{ product.user_price|persian_number }} {% trans "$" %}</span
+                      >
+                      {% endif %}
+                     {% else %}
+                      <span class="product-price text-danger"
+                        >{% trans "Blank Inventory" %}</span
+                      >
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center my-5">
+                  <h4 class="text-muted">{% trans "No products found." %}</h4>
+                </div>
+                {% endfor %}
+              </div>
+              <!-- /products grid -->
 
-							{% elif num == 3 and page_obj.number > 4 %}
-								<span>...</span>
-
-							{% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-								<span>...</span>
-							{% endif %}
-							{% endfor %}
-
-							{# دکمه بعدی #}
-							{% if page_obj.has_next %}
-							<a href="?page={{ page_obj.next_page_number }}" class="next">
-								<i class="mdi mdi-chevron-double-left"></i>
-							</a>
-							{% endif %}
-
-						</div>
-						{% endif %}
-					</div>
-					</div>
-			
+              <!-- pagination -->
+              <div class="row">
+                <div class="col-12">
+                  {% if is_paginated %}
+                  <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a
+                      href="?page={{ page_obj.previous_page_number }}"
+                      class="prev"
+                    >
+                      <i class="mdi mdi-chevron-double-right"></i>
+                    </a>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                    <a href="?page={{ num }}" class="active-page">{{ num }}</a>
+                    {% elif num <= 2 or num >  page_obj.paginator.num_pages|add:"-2" %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                    {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                    {% elif num == 3 and page_obj.number > 4 %}
+                    <span>...</span>
+                    {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+                    <span>...</span>
+                    {% endif %} 
+                    {% endfor %}
+                     {% if page_obj.has_next %}
+                    <a
+                      href="?page={{ page_obj.next_page_number }}"
+                      class="next"
+                    >
+                      <i class="mdi mdi-chevron-double-left"></i>
+                    </a>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              <!-- /pagination -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Content -->
     </div>
-</div>
-
-						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-    {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-            <div class="product-card mb-2 mx-res-0">
-                {% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-                
-                <div class="product-head">
-                    <div class="rating-stars">
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                    </div>
-                    {% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-                </div>
-
-                <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                    {% if product.main_image %}
-                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-                    {% else %}
-                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-                    {% endif %}
-                </a>
-
-                <div class="product-card-body">
-                    <h5 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h5>
-                    {% comment %} <a class="product-meta" href="shop-categories.html">{{ product.category.title }}</a> {% endcomment %}
-                   <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
-
-                    {% if product.inventory > 0 %}
-                        {% if user.is_authenticated %}
-                            <span class="product-price">
-                                {{ product.unit_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% else %}
-                            <span class="product-price">
-                                {{ product.user_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% endif %}
-                    {% else %}
-                        <span class="product-price text-danger">
-                            {% trans "Blank Inventory" %}
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-							<div class="row">
-  <div class="col-12">
-    {% if is_paginated %}
-      <div class="pagination">
-
-        {# دکمه قبلی #}
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-            <i class="mdi mdi-chevron-double-right"></i>
-          </a>
-        {% endif %}
-
-        {# شماره صفحات با ... #}
-        {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
-
-          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num == 3 and page_obj.number > 4 %}
-            <span>...</span>
-
-          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-            <span>...</span>
-          {% endif %}
-        {% endfor %}
-
-        {# دکمه بعدی #}
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="next">
-            <i class="mdi mdi-chevron-double-left"></i>
-          </a>
-        {% endif %}
-
-      </div>
-    {% endif %}
   </div>
-</div>
-
-    </div>
-</div>
-
-						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-    {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-            <div class="product-card mb-2 mx-res-0">
-                {% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-                
-                <div class="product-head">
-                    <div class="rating-stars">
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                    </div>
-                    {% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-                </div>
-
-                <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                    {% if product.main_image %}
-                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-                    {% else %}
-                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-                    {% endif %}
-                </a>
-
-                <div class="product-card-body">
-                    <h5 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h5>
-                    <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
-                   
-
-                    {% if product.inventory > 0 %}
-                        {% if user.is_authenticated %}
-                            <span class="product-price">
-                                {{ product.unit_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% else %}
-                            <span class="product-price">
-                                {{ product.user_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% endif %}
-                    {% else %}
-                        <span class="product-price text-danger">
-                            {% trans "Blank Inventory" %}
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="row">
-  <div class="col-12">
-    {% if is_paginated %}
-      <div class="pagination">
-
-        {# دکمه قبلی #}
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-            <i class="mdi mdi-chevron-double-right"></i>
-          </a>
-        {% endif %}
-
-        {# شماره صفحات با ... #}
-        {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
-
-          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num == 3 and page_obj.number > 4 %}
-            <span>...</span>
-
-          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-            <span>...</span>
-          {% endif %}
-        {% endfor %}
-
-        {# دکمه بعدی #}
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="next">
-            <i class="mdi mdi-chevron-double-left"></i>
-          </a>
-        {% endif %}
-
-      </div>
-    {% endif %}
-  </div>
-</div>
-
-
-						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-    {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-            <div class="product-card mb-2 mx-res-0">
-                {% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-                
-                <div class="product-head">
-                    <div class="rating-stars">
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                    </div>
-                    {% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-                </div>
-
-                <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                    {% if product.main_image %}
-                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-                    {% else %}
-                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-                    {% endif %}
-                </a>
-
-                <div class="product-card-body">
-                    <h5 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h5>
-          <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
-
-
-                    {% if product.inventory > 0 %}
-                        {% if user.is_authenticated %}
-                            <span class="product-price">
-                                {{ product.unit_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% else %}
-                            <span class="product-price">
-                                {{ product.user_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% endif %}
-                    {% else %}
-                        <span class="product-price text-danger">
-                            {% trans "Blank Inventory" %}
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="row">
-  <div class="col-12">
-    {% if is_paginated %}
-      <div class="pagination">
-
-        {# دکمه قبلی #}
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-            <i class="mdi mdi-chevron-double-right"></i>
-          </a>
-        {% endif %}
-
-        {# شماره صفحات با ... #}
-        {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
-
-          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num == 3 and page_obj.number > 4 %}
-            <span>...</span>
-
-          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-            <span>...</span>
-          {% endif %}
-        {% endfor %}
-
-        {# دکمه بعدی #}
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="next">
-            <i class="mdi mdi-chevron-double-left"></i>
-          </a>
-        {% endif %}
-
-      </div>
-    {% endif %}
-  </div>
-</div>
-
-
-						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-    {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-            <div class="product-card mb-2 mx-res-0">
-                {% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-                
-                <div class="product-head">
-                    <div class="rating-stars">
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                    </div>
-                    {% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-                </div>
-
-                <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                    {% if product.main_image %}
-                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-                    {% else %}
-                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-                    {% endif %}
-                </a>
-
-                <div class="product-card-body">
-                    <h5 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h5>
-                <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
-
-                    {% if product.inventory > 0 %}
-                        {% if user.is_authenticated %}
-                            <span class="product-price">
-                                {{ product.unit_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% else %}
-                            <span class="product-price">
-                                {{ product.user_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% endif %}
-                    {% else %}
-                        <span class="product-price text-danger">
-                            {% trans "Blank Inventory" %}
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="row">
-  <div class="col-12">
-    {% if is_paginated %}
-      <div class="pagination">
-
-        {# دکمه قبلی #}
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-            <i class="mdi mdi-chevron-double-right"></i>
-          </a>
-        {% endif %}
-
-        {# شماره صفحات با ... #}
-        {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
-
-          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num == 3 and page_obj.number > 4 %}
-            <span>...</span>
-
-          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-            <span>...</span>
-          {% endif %}
-        {% endfor %}
-
-        {# دکمه بعدی #}
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="next">
-            <i class="mdi mdi-chevron-double-left"></i>
-          </a>
-        {% endif %}
-
-      </div>
-    {% endif %}
-  </div>
-</div>
-
-
-						</div>
-						<div class="ah-tab-content dt-sl">
-							<div class="row mb-3 mx-0 px-res-0">
-    {% for product in products %}
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
-            <div class="product-card mb-2 mx-res-0">
-                {% comment %} <div class="promotion-badge">فروش ویژه</div> {% endcomment %}
-                
-                <div class="product-head">
-                    <div class="rating-stars">
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                        <i class="mdi mdi-star active"></i>
-                    </div>
-                    {% comment %} <div class="discount"><span>20%</span></div> {% endcomment %}
-                </div>
-
-                <a class="product-thumb" href="{{ product.get_absolute_url }}">
-                    {% if product.main_image %}
-                        <img src="{{ product.main_image.url }}" alt="Product Thumbnail">
-                    {% else %}
-                        <img src="{% static 'assets/img/no-product-image.jpeg' %}" alt="Product Thumbnail">
-                    {% endif %}
-                </a>
-
-                <div class="product-card-body">
-                    <h5 class="product-title">
-                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                    </h5>
-                    <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
-
-
-                    {% if product.inventory > 0 %}
-                        {% if user.is_authenticated %}
-                            <span class="product-price">
-                                {{ product.unit_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% else %}
-                            <span class="product-price">
-                                {{ product.user_price|persian_number }} {% trans "$" %}
-                            </span>
-                        {% endif %}
-                    {% else %}
-                        <span class="product-price text-danger">
-                            {% trans "Blank Inventory" %}
-                        </span>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-<div class="row">
-  <div class="col-12">
-    {% if is_paginated %}
-      <div class="pagination">
-
-        {# دکمه قبلی #}
-        {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}" class="prev">
-            <i class="mdi mdi-chevron-double-right"></i>
-          </a>
-        {% endif %}
-
-        {# شماره صفحات با ... #}
-        {% for num in page_obj.paginator.page_range %}
-          {% if num == page_obj.number %}
-            <a href="?page={{ num }}" class="active-page">{{ num }}</a>
-
-          {% elif num <= 2 or num > page_obj.paginator.num_pages|add:"-2" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num >= page_obj.number|add:"-1" and num <= page_obj.number|add:"1" %}
-            <a href="?page={{ num }}">{{ num }}</a>
-
-          {% elif num == 3 and page_obj.number > 4 %}
-            <span>...</span>
-
-          {% elif num == page_obj.paginator.num_pages|add:"-2" and page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-            <span>...</span>
-          {% endif %}
-        {% endfor %}
-
-        {# دکمه بعدی #}
-        {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}" class="next">
-            <i class="mdi mdi-chevron-double-left"></i>
-          </a>
-        {% endif %}
-
-      </div>
-    {% endif %}
-  </div>
-</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End Content -->
-		</div>
-	</div>
 </main>
 <!-- End main-content -->
 {% endblock content %}
-
-
-
-
-
-</html>

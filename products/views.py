@@ -21,7 +21,30 @@ from rest_framework import status
 from .models import Product,Category,Comment
 from .forms import CommentForm
 
+class HomeView(generic.TemplateView):
+    template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        all_products = list(Product.objects.all())  # همه محصولات
+
+        if all_products:
+            def random_products_block():
+                count = random.randint(10, 15)
+                return random.sample(all_products, min(count, len(all_products)))
+
+            context['best_sellers'] = random_products_block()
+            context['new_products'] = random_products_block()
+            context['feature_products'] = random_products_block()
+        else:
+            context['best_sellers'] = []
+            context['new_products'] = []
+            context['feature_products'] = []
+
+        context['categories'] = Category.objects.all()
+        print("✅ HomeView loaded, total products:", Product.objects.count())
+        return context
 class ProductListView(generic.ListView):
     model=Product
     template_name='product/product_list.html'
