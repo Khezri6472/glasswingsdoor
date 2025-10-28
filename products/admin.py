@@ -1,12 +1,15 @@
 from django.contrib import admin, messages
 from django.db.models import Count
 from django.urls import reverse
+from django import forms
 from django.utils.html import format_html
 from django.utils.http import urlencode
 from django.utils.translation import gettext as _
 from mptt.admin import DraggableMPTTAdmin
 
 from . import models
+from . import forms
+
 
 @admin.register(models.Category)
 class CategoryAdmin(DraggableMPTTAdmin):
@@ -54,6 +57,7 @@ class ProductImageInLine(admin.TabularInline):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
+    form = forms.ProductForm      
     list_display = ['id','unit_code', 'name', 'inventory', 'unit_price','user_price', 'inventory_status', 'product_category', 'num_of_comments']
     list_per_page = 10
     list_editable = ['unit_price','user_price', 'inventory']
@@ -66,7 +70,7 @@ class ProductAdmin(admin.ModelAdmin):
         'slug': ['name', ]
     }
     inlines = [TechnicalSpecificationInline, ProductImageInLine] 
-
+    
     def get_queryset(self, request):
         return super().get_queryset(request) \
                 .prefetch_related('comments') \
@@ -92,6 +96,8 @@ class ProductAdmin(admin.ModelAdmin):
             })
         )
         return format_html('<a href="{}">{}</a>', url, product.comments_count)
+
+        
         
     #سورت کردن بر اساس عنوان category
     @admin.display(description=_('product_category'),ordering='category__title')

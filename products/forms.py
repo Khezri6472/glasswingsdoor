@@ -1,6 +1,25 @@
 from django import forms
 from .models import Comment
 
+from django import forms
+from .models import Product
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
+        widgets = {
+            'content': forms.Textarea(attrs={'id': 'id_content'}),
+        }
+
+    class Media:
+        js = (
+            'https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js',
+            'assets/js/ckeditor_init.js',
+        )
+        css = {
+            'all': ('assets/css/admin_ckeditor.css',)
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:

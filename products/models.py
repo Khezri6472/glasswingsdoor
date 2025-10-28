@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 from uuid import uuid4
@@ -41,7 +42,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255,verbose_name=_('Name'))
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products',verbose_name=_('Category'))
     slug = models.SlugField(allow_unicode=True,verbose_name=_('Slug'))
-    description = RichTextField(verbose_name=_('Description'))
+    description = CKEditor5Field(verbose_name=_('Description'))
     short_description = models.TextField(verbose_name=_('Short Description'))
     unit_price = models.PositiveIntegerField(verbose_name=_('Unit Price'))
     user_price = models.PositiveIntegerField( default=0,verbose_name=_('User Price'))

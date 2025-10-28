@@ -20,6 +20,7 @@ django-ckeditor = "*"
 django-mptt = "*"
 django-widget-tweaks = "*"
 djangorestframework = "*"
+django-ckeditor-5 = "*"
 
 [dev-packages]
 

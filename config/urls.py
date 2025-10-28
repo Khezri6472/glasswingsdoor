@@ -29,6 +29,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('products/', include('products.urls')),
     path("blog/", include("blog.urls", namespace="blog")),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
     re_path(r'^rosetta/', include('rosetta.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+ debug_toolbar_urls()
 

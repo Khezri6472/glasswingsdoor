@@ -1,0 +1,17 @@
+/* رنگ متن و پس‌زمینه */
+.ck-editor__editable_inline {
+    background-color: #fff !important;
+    color: #000 !important;
+    min-height: 250px;
+    padding: 10px;
+}
+
+/* محتوای editor */
+.ck.ck-content {
+    color: #000 !important;
+}
+
+/* راست‌چین پیش‌فرض */
+.ck-content[dir="rtl"] {
+    text-align: right;
+}
