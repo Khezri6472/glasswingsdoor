@@ -30,21 +30,24 @@ class HomeView(generic.TemplateView):
         all_products = list(Product.objects.all())  # همه محصولات
 
         if all_products:
-            def random_products_block():
-                count = random.randint(10, 15)
+            def random_products_block(count=None):
+                if count is None:
+                    count = random.randint(10, 15)
                 return random.sample(all_products, min(count, len(all_products)))
 
+            context['random_products'] = random_products_block(5)
             context['best_sellers'] = random_products_block()
             context['new_products'] = random_products_block()
             context['feature_products'] = random_products_block()
         else:
+            context['random_products'] = []
             context['best_sellers'] = []
             context['new_products'] = []
             context['feature_products'] = []
 
         context['categories'] = Category.objects.all()
-        print("✅ HomeView loaded, total products:", Product.objects.count())
         return context
+
 class ProductListView(generic.ListView):
     model=Product
     template_name='product/product_list.html'

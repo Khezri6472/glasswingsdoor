@@ -13,28 +13,37 @@ from products.models import Product,Category,Comment
 class AboutUsView(generic.TemplateView):
     template_name='pages/about_us.html'
 
-class HomePageView(generic.ListView):
-    model=Product
-    template_name='home.html'
-    context_object_name='products'
 
+class HomeView(generic.ListView):
+    model = Product
+    template_name = 'home.html'
+    context_object_name = 'products'
     def get_queryset(self):
-        # این لیست اصلی محصولات (نماینده تمام محصولات سایت)
+       
         return Product.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # محصولات تصادفی (پیشنهاد لحظه‌ای)
-        product_ids = list(Product.objects.values_list('id', flat=True))
-        selected_ids = random.sample(product_ids, min(4, len(product_ids)))
-        context['random_products'] = Product.objects.filter(id__in=selected_ids)
+        all_products = list(Product.objects.all())  # همه محصولات
+        if all_products:
+            def random_products_block(count=None):
+                if count is None:
+                    count = random.randint(10, 15)
+                return random.sample(all_products, min(count, len(all_products)))
 
-        # دسته‌بندی‌ها
+            # 🔹 بلوک‌های مختلف محصولات
+            context['random_products'] = random_products_block(5)
+            context['best_sellers'] = random_products_block()
+            context['new_products'] = random_products_block()
+            context['feature_products'] = random_products_block()
+        else:
+            context['random_products'] = []
+            context['best_sellers'] = []
+            context['new_products'] = []
+            context['feature_products'] = []
+
+        # 🔹 دسته‌بندی‌ها
         context['categories'] = Category.objects.all()
 
         return context
-    
-    
- 
-

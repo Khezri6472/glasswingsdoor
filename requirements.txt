@@ -11,6 +11,7 @@ disutils==1.4.32.post2
 Django==5.2.7
 django-allauth==65.4.1
 django-ckeditor==6.7.2
+django-ckeditor-5==0.2.18
 django-crispy-forms==2.3
 django-debug-toolbar==5.0.1
 django-environ==0.12.0
@@ -26,7 +27,7 @@ jalali_core==1.0.0
 jdatetime==5.2.0
 multidict==6.4.3
 mysqlclient==2.2.7
-pillow==11.2.1
+pillow==12.0.0
 polib==1.2.0
 propcache==0.3.1
 requests==2.32.3
