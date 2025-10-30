@@ -336,7 +336,21 @@
                                                             </h5>
                                                            <a class="product-meta" href="{% url 'products_by_category' product.category.slug %}">{{ product.category.title }}</a>
                                                             
-                                                            <span class="product-price">{{product.unit_price|persian_number}} {% trans "$" %}</span>
+                                                            {% if product.inventory > 0 %}
+                                                                {% if user.is_authenticated %}
+                                                                    <span class="product-price">
+                                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                                    </span>
+                                                                {% else %}
+                                                                    <span class="product-price">
+                                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                                    </span>
+                                                                {% endif %}
+                                                            {% else %}
+                                                                <span class="product-price text-danger">
+                                                                    {% trans "Blank Inventory" %}
+                                                                </span>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
