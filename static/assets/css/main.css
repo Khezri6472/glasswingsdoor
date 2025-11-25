@@ -1031,6 +1031,7 @@ header.main-header .main-menu .list .list-item.mega-menu img {
     border-radius: 0 0 0 10px;
 }
 
+
 header.main-header .main-menu .list .list-item.mega-menu .sub-menu a {
     line-height: 26px;
 }
@@ -1085,7 +1086,7 @@ header.main-header .main-menu>ul>li.category-list:before {
     right: 0;
     top: 150%;
     min-width: 1100px;
-    min-height: 455px;
+    min-height: 610px;
     background-color: #fff;
     -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
@@ -1094,7 +1095,7 @@ header.main-header .main-menu>ul>li.category-list:before {
 
 header.main-header .main-menu>ul>li.category-list>ul {
     width: 220px;
-    min-height: 455px;
+    min-height: 610px;
     position: absolute;
     right: 0;
     top: 150%;
@@ -1130,7 +1131,7 @@ header.main-header .main-menu>ul>li.category-list>ul>li.active>ul {
 
 header.main-header .main-menu>ul>li.category-list>ul>li>ul {
     width: 870px;
-    height: 450px;
+    height:610px;
     overflow: hidden;
     position: absolute;
     right: 220px;
@@ -1141,7 +1142,7 @@ header.main-header .main-menu>ul>li.category-list>ul>li>ul {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: flex-start;
-    max-height: 418px;
+    max-height: 610px;
     display: none;
 }
 

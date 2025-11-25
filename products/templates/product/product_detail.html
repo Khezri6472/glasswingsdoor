@@ -17,8 +17,8 @@
         <div class="title-breadcrumb-special dt-sl mb-3">
             <div class="breadcrumb dt-sl">
                 <nav>
-                    <a href="#">{% trans "Home" %}</a>
-                    <a href="#">{{product_detail.category.title}}</a>
+                    <a href="{% url "home" %}">{% trans "Home" %}</a>
+                    <a href="{% url 'products_by_category' product_detail.category.slug %}">{{product_detail.category.title}}</a>
                     <a href="#"> {{product_detail.name}}</a>
                 </nav>
             </div>
