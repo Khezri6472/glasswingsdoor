@@ -212,4 +212,33 @@ class UpdateStockAPI(APIView):
             return Response({'status': 'error', 'message': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
+class ProductInfoAPI(APIView):
+    """
+    دریافت اطلاعات محصول بر اساس unit_code از طریق POST.
+    """
+    def post(self, request):
+        unit_code = request.data.get('unit_code')  # unit_code از JSON input
 
+        if not unit_code:
+            return Response({'status': 'error', 'message': 'unit_code is required.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            product = Product.objects.get(unit_code=unit_code)
+            data = {
+                'title': product.name,
+                'category': product.category.title,
+                'inventory': product.inventory,
+                'description': product.description,
+                'short_description': product.short_description,
+                'price': product.unit_price,
+                'user_price': getattr(product, 'user_price', None),
+                'special_code': getattr(product, 'special_code', None),
+                'image': product.main_image.url if product.main_image else None,
+                
+            }
+            return Response({'status': 'success', 'data': data}, status=status.HTTP_200_OK)
+
+        except Product.DoesNotExist:
+            return Response({'status': 'error', 'message': 'Product not found.'},
+                            status=status.HTTP_404_NOT_FOUND)
