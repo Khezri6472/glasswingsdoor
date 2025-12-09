@@ -59,12 +59,12 @@ class ProductImageInLine(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     form = forms.ProductForm      
     list_display = ['id','unit_code', 'name', 'inventory', 'unit_price','user_price', 'inventory_status', 'product_category', 'num_of_comments']
-    list_per_page = 10
+    list_per_page = 50
     list_editable = ['unit_price','user_price', 'inventory']
     list_select_related = ['category']
     list_filter = ['datetime_created', InventoryFilter]
     actions = ['clear_inventory']
-    search_fields = ['name', ]
+    search_fields = ['name','unit_code',]
     filter_horizontal = ['related_products'] 
     prepopulated_fields = {
         'slug': ['name', ]

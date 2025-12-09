@@ -16,7 +16,7 @@ import random
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from django.urls import reverse
 
 from .models import Product,Category,Comment
 from .forms import CommentForm
@@ -214,31 +214,42 @@ class UpdateStockAPI(APIView):
 
 class ProductInfoAPI(APIView):
     """
-    دریافت اطلاعات محصول بر اساس unit_code از طریق POST.
+    دریافت اطلاعات محصول فقط با unit_code (بدون API Key)
     """
-    def post(self, request):
-        unit_code = request.data.get('unit_code')  # unit_code از JSON input
 
+    def post(self, request):
+        # دریافت unit_code
+        unit_code = request.data.get('unit_code')
         if not unit_code:
-            return Response({'status': 'error', 'message': 'unit_code is required.'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'status': 'error', 'message': 'unit_code is required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         try:
             product = Product.objects.get(unit_code=unit_code)
-            data = {
-                'title': product.name,
-                'category': product.category.title,
-                'inventory': product.inventory,
-                'description': product.description,
-                'short_description': product.short_description,
-                'price': product.unit_price,
-                'user_price': getattr(product, 'user_price', None),
-                'special_code': getattr(product, 'special_code', None),
-                'image': product.main_image.url if product.main_image else None,
-                
-            }
-            return Response({'status': 'success', 'data': data}, status=status.HTTP_200_OK)
-
         except Product.DoesNotExist:
-            return Response({'status': 'error', 'message': 'Product not found.'},
-                            status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {'status': 'error', 'message': 'Product not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # ساخت لینک صفحه جزئیات
+        product_detail_url = request.build_absolute_uri(
+            reverse('product_detail', kwargs={
+                'slug': product.slug,
+                'unit_code': product.unit_code
+            })
+        )
+
+        data = {
+            'title': product.name,
+            'category': product.category.title,
+            'inventory': product.inventory,
+            'price': product.unit_price,
+            'user_price': getattr(product, 'user_price', None),
+            'image': product.main_image.url if product.main_image else None,
+            'product_detail_url': product_detail_url,
+        }
+
+        return Response({'status': 'success', 'data': data}, status=status.HTTP_200_OK)
