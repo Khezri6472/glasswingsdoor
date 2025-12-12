@@ -218,7 +218,6 @@ class ProductInfoAPI(APIView):
     """
 
     def post(self, request):
-        # دریافت unit_code
         unit_code = request.data.get('unit_code')
         if not unit_code:
             return Response(
@@ -234,13 +233,8 @@ class ProductInfoAPI(APIView):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-        # ساخت لینک صفحه جزئیات
-        product_detail_url = request.build_absolute_uri(
-            reverse('product_detail', kwargs={
-                'slug': product.slug,
-                'unit_code': product.unit_code
-            })
-        )
+        # ساخت لینک فارسی بدون encode
+        product_detail_url = f"https://www.glasswingsdoor.com/products/product/{product.slug}/{product.unit_code}/"
 
         data = {
             'title': product.name,

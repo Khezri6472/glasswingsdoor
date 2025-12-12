@@ -21,6 +21,8 @@ django-mptt = "*"
 django-widget-tweaks = "*"
 djangorestframework = "*"
 django-ckeditor-5 = "*"
+persiantools = "*"
+unidecode = "*"
 
 [dev-packages]
 

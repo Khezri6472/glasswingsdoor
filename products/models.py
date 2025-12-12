@@ -41,7 +41,7 @@ class Discount(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255,verbose_name=_('Name'))
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products',verbose_name=_('Category'))
-    slug = models.SlugField(allow_unicode=True,verbose_name=_('Slug'))
+    slug = models.SlugField(max_length=255,allow_unicode=True,verbose_name=_('Slug'))
     description = CKEditor5Field(verbose_name=_('Description'))
     short_description = models.TextField(verbose_name=_('Short Description'))
     unit_price = models.PositiveIntegerField(verbose_name=_('Unit Price'))
