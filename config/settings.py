@@ -18,6 +18,7 @@ env = Env()
 env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# env.read_env(BASE_DIR / 'config' / '.env')
 # Set the project base directory
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,7 +38,8 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 DEBUG = env.bool('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
-
+#Api keys
+KAVENEGAR_API_KEY = env.str('KAVENEGAR_API_KEY')
 
 
 # Application definition
@@ -210,12 +212,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL='accounts.CustomUser'
 
 
-LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_LOGIN_METHODS = {"username", "email"}
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# LOGIN_REDIRECT_URL = '/'
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+# ACCOUNT_LOGIN_METHODS = {"username", "email"}
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+# ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "phone"
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_EMAIL_FIELD = None
+
+ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
+ 
+ 
+
 
 #CRISPY FORM SETTING
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
