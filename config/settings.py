@@ -209,7 +209,7 @@ MEDIA_ROOT=str(BASE_DIR.joinpath('media'))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #accounts config
-AUTH_USER_MODEL='accounts.CustomUser'
+# AUTH_USER_MODEL='accounts.CustomUser'
 
 
 # LOGIN_REDIRECT_URL = '/'
@@ -221,15 +221,15 @@ AUTH_USER_MODEL='accounts.CustomUser'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-# ACCOUNT_AUTHENTICATION_METHOD = "username"
-ACCOUNT_USER_MODEL_USERNAME_FIELD = "phone"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_EMAIL_FIELD = None
-
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_ADAPTER = "accounts.adapters.CustomAccountAdapter"
- 
- 
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
 
 
 #CRISPY FORM SETTING

@@ -54,7 +54,7 @@ class SendOTP(APIView):
             params = {
                 'sender': '9982005114',  # شماره فرستنده که از Kavenegar داری
                 'receptor': phone,     # شماره موبایل کاربر
-                'message': f'کد ورود شما: {otp_code}'
+                'message': f'کد ورود به گلس وینگز: {otp_code}'
             }
             response = api.sms_send(params)
             print(response)  # برای debug
@@ -92,4 +92,4 @@ class VerifyOTP(APIView):
         # لاگین با مشخص کردن backend
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-        return Response({"message": "logged in"}, status=200)
+        return Response({"message": "یه سایت گلس وینگز خوش آمدید"}, status=200)

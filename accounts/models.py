@@ -1,35 +1,32 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,BaseUserManager
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 import random
+from django.utils import timezone
 
 class CustomUser(AbstractUser):
-    phone = models.CharField(default='09196847193',
+    phone = models.CharField(
         max_length=11,
         unique=True,
-        validators=[RegexValidator(r"^09\d{9}$", "شماره موبایل معتبر نیست")]
+        validators=[RegexValidator(r"^09\d{9}$", "شماره موبایل معتبر نیست")],verbose_name=_('Mobile Number')
     )
+
+    otp_code = models.CharField(max_length=4, blank=True, null=True,verbose_name=_('Otp Code'))
+    otp_created = models.DateTimeField(blank=True, null=True,verbose_name=_('Otp Create Date'))
+    user_code=models.CharField(unique=True,max_length=10, blank=True, null=True)
+    is_affiliate = models.BooleanField(default=False,verbose_name=_('Affiliate User'))
     
-    user_code = models.CharField(max_length=10,unique=True, blank=True, null=True,verbose_name=_('UserCode'))
-    otp_code = models.CharField(max_length=6, blank=True, null=True,verbose_name=_('OptCode'))
-    otp_created = models.DateTimeField(blank=True, null=True,verbose_name=_('OtpDate'))
-
-    # این دو فیلد را غیرفعال می‌کنیم اگر نمی‌خواهی username داشته باشی:
-    # username = models.CharField(max_length=150, unique=False, null=True, blank=True)
-
     USERNAME_FIELD = "phone"
-    REQUIRED_FIELDS = []  # چون phone به عنوان USERNAME است
+    REQUIRED_FIELDS = ["username"]  # مهم
 
     def generate_otp(self):
         code = str(random.randint(1000, 9999))
         self.otp_code = code
-        from django.utils import timezone
         self.otp_created = timezone.now()
-        self.save()
+        self.save(update_fields=["otp_code", "otp_created"])
         return code
-
 
 
 
@@ -42,7 +39,7 @@ class UserProfile(models.Model):
     birth_date = models.DateField(blank=True, null=True,verbose_name=_('BirthDate'))
 
     # اطلاعات تماس و آدرس
-    phone = models.CharField(max_length=11, blank=True, null=True,verbose_name=_('PhonNumber'))
+    phone = models.CharField(max_length=11, blank=True, null=True,verbose_name=_('Phon Number'))
     address = models.CharField(max_length=250, blank=True, null=True,verbose_name=_('Address'))
     postal_code = models.CharField(max_length=20, blank=True, null=True,verbose_name=_('PostalCode'))
     city = models.CharField(max_length=50, blank=True, null=True,verbose_name=_('City'))
