@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser,UserProfile
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
+class UserProfileInline(admin.TabularInline):
+    model = UserProfile
+    extra = 1
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -58,3 +61,5 @@ class CustomUserAdmin(UserAdmin):
 
     search_fields = ('phone',)
     ordering = ('phone',)
+    inlines = [UserProfileInline,] 
+

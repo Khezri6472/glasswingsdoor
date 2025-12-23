@@ -6,6 +6,9 @@ from django.utils.translation import gettext_lazy as _
 import random
 from django.utils import timezone
 
+
+
+
 class CustomUser(AbstractUser):
     phone = models.CharField(
         max_length=11,

@@ -349,7 +349,7 @@
                       >
 
                       {% if product.inventory > 0 %}
-                       {% if user.is_authenticated %}
+                     {% if user.is_authenticated and user.is_affiliate %}
                       <span class="product-price"
                         >{{ product.unit_price|persian_number }} {% trans "$" %}</span
                       >

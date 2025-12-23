@@ -36,70 +36,91 @@
 <body>
     <div class="wrapper">
         <!-- Start main-content -->
-        <main class="main-content dt-sl mt-4 mb-3">
-            <div class="container main-container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
-                        <div class="logo-area text-center mb-3">
-                            <a href="#"><img src="{% static "assets/img/GlassWingslogo.png" %}" class="img-fluid" alt="logo"></a>
+       <main class="main-content dt-sl mt-4 mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
+
+                    <!-- Logo -->
+                    <div class="logo-area text-center mb-3">
+                        <a href="/">
+                            <img src="{% static 'assets/img/GlassWingslogo.png' %}"
+                                 class="img-fluid" alt="logo">
+                        </a>
+                    </div>
+
+                    <!-- Auth Box -->
+                    <div class="auth-wrapper form-ui border pt-4">
+
+                        <h2 class="text-center font-weight-bold mb-3">ورود به گلس وینگز</h2>
+
+                        <!-- Phone -->
+                        <div class="form-row-title">
+                            <h3>شماره موبایل خود را وارد کنید</h3>
                         </div>
-                        <div class="auth-wrapper form-ui border pt-4">
-    <h2 class="text-center font-weight-bold mb-3">GALSSWINGS</h2>
 
-    <div class="form-row-title">
-        <h3>شماره موبایل</h3>
-    </div>
+                        <div class="form-row with-icon">
+                            <input id="phone"
+                                   type="text"
+                                   class="form-control custom-input"
+                                   placeholder="09xxxxxxxxx"
+                                   maxlength="11">
+                            <i class="mdi mdi-cellphone"></i>
+                        </div>
 
-    <div class="form-row with-icon">
-        <input id="phone"
-               type="text"
-               class="form-control custom-input"
-               placeholder="09xxxxxxxxx"
-               maxlength="11">
-        <i class="mdi mdi-cellphone"></i>
-    </div>
+                        <div class="form-row mt-3">
+                            <button type="button"
+                                    id="send-otp-btn"
+                                    class="btn-primary-cm btn-with-icon w-100">
+                                ارسال کد تایید
+                            </button>
+                        </div>
 
-    <div class="form-row mt-3">
-        <button type="button"
-                id="send-otp-btn"
-                class="btn-primary-cm btn-with-icon w-100">
-            ارسال کد تایید
-        </button>
-    </div>
+                        <!-- OTP Section -->
+                        <div id="otp-section" style="display:none;">
 
-    <!-- OTP -->
-    <div id="otp-section" style="display:none;">
-        <div class="form-row-title mt-4">
-            <h3>کد تایید</h3>
-        </div>
+                            <div class="form-row-title mt-4">
+                                <h3>کد تایید را وارد کنید</h3>
+                            </div>
 
-        <div class="form-row with-icon">
-            <input id="otp"
-                   type="text"
-                   class="form-control custom-input text-center"
-                   placeholder="کد ۴ رقمی"
-                   maxlength="4">
-            <i class="mdi mdi-shield-check-outline"></i>
-        </div>
+                           <div class="form-row mt-4">
+                            <div class="numbers-verify">
+                                    <div class="lines-number-input d-flex justify-content-center gap-2">
+                                        <input type="text" class="line-number otp-input" maxlength="1" autofocus>
+                                        <input type="text" class="line-number otp-input" maxlength="1">
+                                        <input type="text" class="line-number otp-input" maxlength="1">
+                                        <input type="text" class="line-number otp-input" maxlength="1">
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="text-center mt-2">
-            <span id="timer" class="text-danger"></span>
-        </div>
+                            <div class="text-center mt-2">
+                                <span id="timer" class="text-danger"></span>
+                            </div>
 
-        <div class="form-row mt-3">
-            <button type="button"
-                    id="verify-otp-btn"
-                    class="btn-primary-cm btn-with-icon w-100">
-                ورود به سایت
-            </button>
-        </div>
-    </div>
-</div>
+                            <div class="text-center mt-2">
+                                <span id="resend-otp"
+                                      class="text-primary btn-link-border"
+                                      style="display:none; cursor:pointer;">
+                                    ارسال مجدد کد تایید
+                                </span>
+                            </div>
+
+                            <div class="form-row mt-3">
+                                <button type="button"
+                                        id="verify-otp-btn"
+                                        class="btn-primary-cm btn-with-icon w-100">
+                                    تایید و ورود
+                                </button>
+                            </div>
+
+                        </div>
 
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
         <!-- End main-content -->
         <!-- Start mini-footer -->
         <footer class="mini-footer dt-sl">
@@ -154,8 +175,34 @@
 <script src="{% static 'assets/js/vendor/jquery-3.4.1.min.js' %}"></script>
 
 <script>
-$("#send-otp-btn").click(function () {
+let timerInterval = null;
+let timeLeft = 120;
 
+function updateTimer() {
+    let m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+    let s = String(timeLeft % 60).padStart(2, '0');
+    $("#timer").text(m + ":" + s);
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    timeLeft = 120;
+    $("#resend-otp").hide();
+    updateTimer();
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            $("#timer").text("00:00");
+            $("#resend-otp").fadeIn();
+        }
+    }, 1000);
+}
+
+function sendOtp() {
     let phone = $("#phone").val().trim();
 
     if (phone.length !== 11) {
@@ -167,38 +214,34 @@ $("#send-otp-btn").click(function () {
         url: "/accounts/send-otp/",
         type: "POST",
         contentType: "application/json",
-        headers: {
-            "X-CSRFToken": "{{ csrf_token }}"
-        },
-        data: JSON.stringify({
-            phone: phone
-        }),
-        beforeSend: function () {
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+        data: JSON.stringify({ phone }),
+        beforeSend() {
             $("#phone").prop("disabled", true);
             $("#send-otp-btn").hide();
         },
-        success: function (res) {
-            console.log(res);
+        success() {
             $("#otp-section").slideDown();
+            startTimer();
         },
-        error: function (xhr) {
-            console.log(xhr.responseText);
+        error() {
             alert("خطا در ارسال کد");
-
             $("#phone").prop("disabled", false);
             $("#send-otp-btn").show();
         }
     });
-    
-});
-</script>
-<script>
-    $("#verify-otp-btn").click(function () {
+}
+
+$("#send-otp-btn").click(sendOtp);
+$("#resend-otp").click(sendOtp);
+
+$("#verify-otp-btn").click(function () {
+
     let phone = $("#phone").val().trim();
-    let otp = $("#otp").val().trim();
+    let otp = getOtpCode();
 
     if (otp.length !== 4) {
-        alert("کد OTP معتبر نیست");
+        alert("کد تایید کامل نیست");
         return;
     }
 
@@ -208,18 +251,46 @@ $("#send-otp-btn").click(function () {
         data: {
             phone: phone,
             otp: otp,
-            csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+            csrfmiddlewaretoken: "{{ csrf_token }}"
         },
-        success: function (res) {
-            alert(res.message);
-            window.location.href = "/";  // بعد از ورود، هدایت به صفحه اصلی
+        success: function () {
+            window.location.href = "/";
         },
         error: function (xhr) {
-            alert(xhr.responseJSON?.error || "خطا در ورود");
+            alert(xhr.responseJSON?.error || "کد نامعتبر است");
         }
     });
 });
 
+</script>
+<script>
+const otpInputs = document.querySelectorAll(".otp-input");
+
+otpInputs.forEach((input, index) => {
+
+    input.addEventListener("input", () => {
+        input.value = input.value.replace(/[^0-9]/g, "");
+
+        if (input.value && index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && !input.value && index > 0) {
+            otpInputs[index - 1].focus();
+        }
+    });
+});
+
+// گرفتن OTP کامل
+function getOtpCode() {
+    let otp = "";
+    otpInputs.forEach(input => {
+        otp += input.value;
+    });
+    return otp;
+}
 </script>
 
 
