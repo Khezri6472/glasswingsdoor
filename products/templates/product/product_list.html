@@ -350,9 +350,16 @@
 
                       {% if product.inventory > 0 %}
                      {% if user.is_authenticated and user.is_affiliate %}
-                      <span class="product-price"
-                        >{{ product.unit_price|persian_number }} {% trans "$" %}</span
-                      >
+                      <div class="product-summary">
+                        <div class="product-seller-price-prev">
+                            {{ product.user_price|persian_number }} {% trans "$" %}
+                        </div>
+
+                        <div class="product-seller-price-off">
+                            {{ product.unit_price|persian_number }} {% trans "$" %}
+                        </div>
+                    </div>
+
                       {% else %}
                       <span class="product-price"
                         >{{ product.user_price|persian_number }} {% trans "$" %}</span

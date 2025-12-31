@@ -1,0 +1,99 @@
+{% extends "_base.html" %}
+ {% load static %}
+  {% load i18n %} 
+{% load persian_numbers_tags %}
+ {% block title %} product list {% endblock title %}
+ {%block content %}
+
+<div class="container">
+    
+<main class="main-content dt-sl mb-3">
+     <h2 class="mb-4">لیست محصولات</h2>
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-12">
+                   <!-- products grid -->
+              <div class="row mb-3 mx-0 px-res-0">
+                {% for product in products %}
+                <div
+                  class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0"
+                >
+                  <div class="product-card mb-2 mx-res-0">
+                    <div class="product-head">
+                      <div class="rating-stars">
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                        <i class="mdi mdi-star active"></i>
+                      </div>
+                    </div>
+
+                    <a
+                      class="product-thumb"
+                      href="{{ product.get_absolute_url }}"
+                    >
+                      {% if product.main_image %}
+                      <img src="{{ product.main_image.url }}" alt="Product Thumbnail"
+                      />
+                      {% else %}
+                      <img
+                        src="{% static 'assets/img/no-product-image.jpeg' %}"
+                        alt="Product Thumbnail"
+                      />
+                      {% endif %}
+                    </a>
+
+                    <div class="product-card-body">
+                      <h5 class="product-title">
+                        <a href="{{ product.get_absolute_url }}"
+                          >{{ product.name }}</a
+                        >
+                      </h5>
+                      <a
+                        class="product-meta"
+                        href="{% url 'products_by_category' product.category.slug %}"
+                        >{{ product.category.title }}</a
+                      >
+
+                      {% if product.inventory > 0 %}
+                     {% if user.is_authenticated and user.is_affiliate %}
+                      <div class="product-summary">
+                        <div class="product-seller-price-prev">
+                            {{ product.user_price|persian_number }} {% trans "$" %}
+                        </div>
+
+                        <div class="product-seller-price-off">
+                            {{ product.unit_price|persian_number }} {% trans "$" %}
+                        </div>
+                    </div>
+
+                      {% else %}
+                      <span class="product-price"
+                        >{{ product.user_price|persian_number }} {% trans "$" %}</span
+                      >
+                      {% endif %}
+                     {% else %}
+                      <span class="product-price text-danger"
+                        >{% trans "Blank Inventory" %}</span
+                      >
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center my-5">
+                  <h4 class="text-muted">{% trans "No products found." %}</h4>
+                </div>
+                {% endfor %}
+              </div>
+              <!-- /products grid -->
+
+            </div>
+           
+        </div>
+    </div>
+</main>
+  
+</div>
+{% endblock %}

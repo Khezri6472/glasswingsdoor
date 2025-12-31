@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
 from django_ckeditor_5.fields import CKEditor5Field
-
+import uuid
 
 from uuid import uuid4
 
@@ -213,3 +213,15 @@ class Comment(models.Model):
     class Meta:
         verbose_name = _('Comment')
         verbose_name_plural = _('Comments')
+
+
+
+
+class SharedProductLink(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    products = models.ManyToManyField("products.Product", related_name="shared_links")
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.uuid)

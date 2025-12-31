@@ -1,7 +1,6 @@
 from django.urls import path,re_path
 
-from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI,HomeView,ProductInfoAPI
-
+from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI,HomeView,ProductInfoAPI, CreateSharedProductLinkAPI, SharedProductsView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('products/', ProductListView.as_view(),name='products'),
@@ -19,6 +18,10 @@ urlpatterns = [
     path('api/update-price/', UpdatePriceAPI.as_view(), name='update_price_api'),
     path('api/update-stock/', UpdateStockAPI.as_view(), name='update_stock_api'),
     path('api/product-info/', ProductInfoAPI.as_view(), name='product_info_api'),
+   
+
+    path('api/create-shared-link/', CreateSharedProductLinkAPI.as_view(),name='create_shared_link_api'),
+    path('shared-products/<uuid:uuid>/', SharedProductsView.as_view(), name='shared_products'),
 
     # path('category/<slug:slug>/', ProductByCategoryView.as_view(), name='products_by_category'),
     #  path('category/<int:category_id>/', ProductByCategoryView.as_view(), name='products_by_category'),

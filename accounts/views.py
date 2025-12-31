@@ -1,19 +1,26 @@
 from django.shortcuts import render
 from allauth.account.forms import LoginForm, SignupForm
-
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
-import random
-import string
+from django.conf import settings
+from kavenegar import KavenegarAPI, APIException, HTTPException
 from django.contrib.auth import login
-
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from accounts.models import CustomUser
+from django.db import transaction
+from .models import CustomUser, UserProfile
+from .serializers import AffiliateUserSerializer
+from .permissions import HasAffiliateAPIKey
 import datetime
-from django.conf import settings
-from kavenegar import KavenegarAPI, APIException, HTTPException
+import random
+import string
+
+
+
 
 
 def combined_auth_view(request):
@@ -93,3 +100,56 @@ class VerifyOTP(APIView):
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
         return Response({"message": "یه سایت گلس وینگز خوش آمدید"}, status=200)
+
+
+
+class CustomLogoutView(LogoutView):
+    template_name = "account/logout.html"
+    next_page = reverse_lazy("home")
+
+
+
+
+class CreateOrUpdateAffiliateUser(APIView):
+    permission_classes = [HasAffiliateAPIKey]
+
+    def post(self, request):
+        serializer = AffiliateUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        data = serializer.validated_data
+        phone = data["phone"]
+
+        with transaction.atomic():
+            user, created = CustomUser.objects.get_or_create(
+                phone=phone,
+                defaults={
+                    "username": phone,
+                    "user_code": data["user_code"],
+                    "is_affiliate": data.get("is_affiliate", True),
+                    "is_active": True,
+                }
+            )
+
+            if not created:
+                user.user_code = data["user_code"]
+                user.is_affiliate = data.get("is_affiliate", True)
+                user.save(update_fields=["user_code", "is_affiliate"])
+
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+
+            if "full_name" in data:
+                profile.full_name = data["full_name"]
+                profile.save(update_fields=["full_name"])
+
+        return Response(
+            {
+                "created": created,
+                "user_id": user.id,
+                "phone": user.phone,
+                "user_code": user.user_code,
+                "is_affiliate": user.is_affiliate,
+                "full_name": profile.full_name,
+            },
+            status=status.HTTP_201_CREATED if created else status.HTTP_200_OK
+        )

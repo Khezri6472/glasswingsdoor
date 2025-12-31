@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-24 18:14+0330\n"
-"PO-Revision-Date: 2025-10-24 18:17+0330\n"
+"POT-Creation-Date: 2025-12-26 16:31+0330\n"
+"PO-Revision-Date: 2025-12-26 16:43+0330\n"
 "Last-Translator:   <khezri6472@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,113 +22,102 @@ msgstr ""
 msgid "Search for the product name, brand or category you are looking for…"
 msgstr "نام کالا یا دسته بندی مورد نظر خود را جستجو کنید ..."
 
-#: .\templates\_base.html:85
+#: .\templates\_base.html:93
 msgid "User Account"
 msgstr "حساب کاربری"
 
-#: .\templates\_base.html:90
+#: .\templates\_base.html:105
 msgid "Profile"
 msgstr "پروفایل"
 
-#: .\templates\_base.html:94
+#: .\templates\_base.html:109
 msgid "Messages"
 msgstr "پیغام ها"
 
-#: .\templates\_base.html:97
+#: .\templates\_base.html:112
 msgid "Edit Account"
 msgstr "ویرایش حساب کاربر"
 
-#: .\templates\_base.html:103
+#: .\templates\_base.html:118
 msgid "Log Out"
 msgstr "خروج"
 
-#: .\templates\_base.html:107
+#: .\templates\_base.html:122
 msgid "LogIn"
 msgstr "ورود"
 
-#: .\templates\_base.html:111 .\templates\account\signup.html:48
-msgid "Signup"
-msgstr "ثبت نام"
-
-#: .\templates\_base.html:134 .\templates\_base.html:287
+#: .\templates\_base.html:150 .\templates\_base.html:303
 msgid "Home"
 msgstr "صفحه اصلی"
 
-#: .\templates\_base.html:137
+#: .\templates\_base.html:153
 msgid "Product Categories"
 msgstr "دسته بندی محصولات"
 
-#: .\templates\_base.html:188
+#: .\templates\_base.html:204
 msgid "Blog"
 msgstr "وبلاگ"
 
-#: .\templates\_base.html:193
+#: .\templates\_base.html:209
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: .\templates\_base.html:196
+#: .\templates\_base.html:212
 msgid "About Us"
 msgstr "درباره ما"
 
-#: .\templates\_base.html:202
+#: .\templates\_base.html:218
 msgid "Shopping Cart"
 msgstr "سبد خرید"
 
-#: .\templates\_base.html:214
+#: .\templates\_base.html:230
 msgid "View Shopping Cart"
 msgstr "مشاهده سبد خرید"
 
-#: .\templates\_base.html:250
+#: .\templates\_base.html:266
 msgid "Total Amount"
 msgstr "مبلع قابل پرداخت"
 
-#: .\templates\_base.html:253 .\templates\home.html:276
-#: .\templates\home.html:280 .\templates\home.html:341
-#: .\templates\home.html:447 .\templates\home.html:451
-#: .\templates\home.html:524 .\templates\home.html:528
-#: .\templates\home.html:592 .\templates\home.html:594
+#: .\templates\_base.html:269 .\templates\home.html:277
+#: .\templates\home.html:281 .\templates\home.html:345
+#: .\templates\home.html:349 .\templates\home.html:462
+#: .\templates\home.html:466 .\templates\home.html:539
+#: .\templates\home.html:543 .\templates\home.html:607
+#: .\templates\home.html:609
 msgid "$"
 msgstr "تومان"
 
-#: .\templates\_base.html:259
+#: .\templates\_base.html:275
 msgid "Check Out"
 msgstr "ثبت سفارش"
 
-#: .\templates\_base.html:281
+#: .\templates\_base.html:297
 msgid "Search ..."
 msgstr "جستجو ..."
 
-#: .\templates\_base.html:567
+#: .\templates\_base.html:582
 msgid "Back to top"
 msgstr "بازگشت به بالا"
 
-#: .\templates\account\login.html:48
-msgid "Log In"
-msgstr "ورود"
+#: .\templates\account\logout.html:28
+msgid "Yes"
+msgstr "بله"
 
-#: .\templates\account\login.html:54
-msgid "Email or User Name"
-msgstr "ایمیل یا نام کاربری"
+#: .\templates\account\logout.html:33
+msgid "No"
+msgstr "خیر"
 
-#: .\templates\account\login.html:61 .\templates\account\signup.html:65
-msgid "Password"
-msgstr "رمز عبور"
-
-#: .\templates\account\login.html:70
-msgid "Login To Website"
-msgstr "ورود به سایت"
-
-#: .\templates\account\login.html:76
-msgid "Already have an account?"
-msgstr "قبلا ثبت نام کرده اید؟"
-
-#: .\templates\account\login.html:77
-msgid "Sign in here"
-msgstr "ثبت نام در گلس وینگ"
+#: .\templates\account\signup.html:48
+msgid "Signup"
+msgstr "ثبت نام"
 
 #: .\templates\account\signup.html:57
 msgid "Email Or Username"
 msgstr "ایمیل یا نام کاربری"
+
+#: .\templates\account\signup.html:65
+msgid "Password"
+msgstr "رمز عبور"
 
 #: .\templates\account\signup.html:73
 msgid "Confrim Password"
@@ -154,75 +143,91 @@ msgstr "بیش از ۲۰۰۰ محصول در دسته‌بندی‌های مخت
 msgid "Operator"
 msgstr "اپراتور"
 
-#: .\templates\home.html:159 .\templates\home.html:166
-#: .\templates\home.html:173 .\templates\home.html:180
-#: .\templates\home.html:187 .\templates\home.html:193
-#: .\templates\home.html:199 .\templates\home.html:206
-#: .\templates\home.html:213 .\templates\home.html:220
+#: .\templates\home.html:159 .\templates\home.html:167
+#: .\templates\home.html:174 .\templates\home.html:181
+#: .\templates\home.html:188 .\templates\home.html:194
+#: .\templates\home.html:200 .\templates\home.html:207
+#: .\templates\home.html:214 .\templates\home.html:221
 msgid "Product Sample"
 msgstr "نمونه محصول"
 
-#: .\templates\home.html:165
+#: .\templates\home.html:166
 msgid "SubOperator"
 msgstr "زیرمجموعه اپراتور"
 
-#: .\templates\home.html:172
+#: .\templates\home.html:173
 msgid "Slat"
 msgstr "لـــت "
 
-#: .\templates\home.html:179
+#: .\templates\home.html:180
 msgid "Cover"
 msgstr "کاور"
 
-#: .\templates\home.html:186
+#: .\templates\home.html:187
 msgid "Pasar"
 msgstr "پاسار"
 
-#: .\templates\home.html:192
+#: .\templates\home.html:193
 msgid "Sections"
 msgstr "مقاطع"
 
-#: .\templates\home.html:198
+#: .\templates\home.html:199
 msgid "Fitting"
 msgstr "یراق آلات"
 
-#: .\templates\home.html:205
+#: .\templates\home.html:206
 msgid "Glass"
 msgstr "شیشه"
 
-#: .\templates\home.html:212
+#: .\templates\home.html:213
 msgid "Laminet"
 msgstr "لمینت"
 
-#: .\templates\home.html:219
+#: .\templates\home.html:220
 msgid "Special Products"
 msgstr "محصولات خاص"
 
-#: .\templates\home.html:236
+#: .\templates\home.html:237
 msgid "Best Sellers"
 msgstr "پرفروش‌ترین‌ها"
 
-#: .\templates\home.html:237 .\templates\home.html:408
-#: .\templates\home.html:487
+#: .\templates\home.html:238 .\templates\home.html:423
+#: .\templates\home.html:502
 msgid "View All"
 msgstr "مشاهده همه"
 
-#: .\templates\home.html:285 .\templates\home.html:456
-#: .\templates\home.html:533 .\templates\home.html:597
+#: .\templates\home.html:286 .\templates\home.html:354
+#: .\templates\home.html:471 .\templates\home.html:548
+#: .\templates\home.html:612
 msgid "Blank Inventory"
 msgstr "اتمام موجودی"
 
-#: .\templates\home.html:407
+#: .\templates\home.html:422
 msgid "New Products"
 msgstr "محصولات جدید"
 
-#: .\templates\home.html:553
+#: .\templates\home.html:568
 msgid "Feature Product"
 msgstr "محصولات آینده"
 
-#: .\templates\home.html:603
+#: .\templates\home.html:618
 msgid "Product Detail"
 msgstr "جزئیات محصول"
+
+#~ msgid "Log In"
+#~ msgstr "ورود"
+
+#~ msgid "Email or User Name"
+#~ msgstr "ایمیل یا نام کاربری"
+
+#~ msgid "Login To Website"
+#~ msgstr "ورود به سایت"
+
+#~ msgid "Already have an account?"
+#~ msgstr "قبلا ثبت نام کرده اید؟"
+
+#~ msgid "Sign in here"
+#~ msgstr "ثبت نام در گلس وینگ"
 
 #~ msgid "Login"
 #~ msgstr "وارد شوید"

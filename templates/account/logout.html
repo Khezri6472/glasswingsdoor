@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load i18n %}
+{% load persian_numbers_tags %}
+
+{% block title %}
+خروج از حساب
+{% endblock title %}
+
+{% block content %}
+<!-- Start main-content -->
+<main class="main-content dt-sl mb-3">
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-12">
+                <div class="dt-sl pt-3 pb-5">
+                    <div class="error-page text-center">
+
+                        <h1 class="mb-4">
+                            آیا می‌خواهید از سایت خارج شوید؟
+                        </h1>
+
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                    class="btn btn-outline-success px-5 mr-2">
+                                {% trans "Yes" %}
+                            </button>
+
+                            <a href="{% url 'home' %}"
+                               class="btn btn-outline-secondary px-5 mr-2">
+                                {% trans "No" %}
+                            </a>
+                        </form>
+
+                        <img src="{% static 'assets/img/theme/logout.png' %}"
+                             class="img-fluid mt-4"
+                             width="60%"
+                             alt="logout">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- End main-content -->
+{% endblock content %}

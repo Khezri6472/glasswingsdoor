@@ -17,8 +17,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.urls import reverse
+from django.views.generic import DetailView
+from django.shortcuts import get_list_or_404
 
-from .models import Product,Category,Comment
+from .models import Product,Category,Comment,SharedProductLink
 from .forms import CommentForm
 
 class HomeView(generic.TemplateView):
@@ -247,3 +249,63 @@ class ProductInfoAPI(APIView):
         }
 
         return Response({'status': 'success', 'data': data}, status=status.HTTP_200_OK)
+
+
+class CreateSharedProductLinkAPI(APIView):
+    """
+    POST:
+    {
+        "product_codes": ["P1001", "P1002", "P1003"]
+    }
+    """
+
+    def post(self, request):
+        product_codes = request.data.get("product_codes")
+
+        if not product_codes or not isinstance(product_codes, list):
+            return Response(
+                {"error": "product_codes must be a list"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # گرفتن محصولات
+        products = Product.objects.filter(unit_code__in=product_codes)
+
+        if not products.exists():
+            return Response(
+                {"error": "No valid products found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # ساخت لینک
+        shared_link = SharedProductLink.objects.create()
+        shared_link.products.set(products)
+
+        # ساخت URL
+        url = request.build_absolute_uri(
+            reverse("shared_products", kwargs={"uuid": shared_link.uuid})
+        )
+
+        return Response({
+            "link": url,
+            "uuid": shared_link.uuid,
+            "product_count": products.count()
+        }, status=status.HTTP_201_CREATED)
+
+
+
+class SharedProductsView(DetailView):
+    model = SharedProductLink
+    template_name = "product/shared_products.html"
+    context_object_name = "link"
+    slug_field = "uuid"
+    slug_url_kwarg = "uuid"
+
+    def get_queryset(self):
+        # فقط لینک‌های فعال
+        return SharedProductLink.objects.filter(is_active=True)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["products"] = self.object.products.all()
+        return context

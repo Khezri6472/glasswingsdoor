@@ -272,9 +272,15 @@
                                              
                                             {% if product.inventory > 0 %}
                                               {% if user.is_authenticated and user.is_affiliate %}
-                                                    <span class="product-price">
-                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
-                                                    </span>
+                                                     <div class="product-summary">
+                                                        <div class="product-seller-price-prev">
+                                                            {{ product.user_price|persian_number }} {% trans "$" %}
+                                                        </div>
+
+                                                        <div class="product-seller-price-off">
+                                                            {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                        </div>
+                                                    </div>
                                                 {% else %}
                                                     <span class="product-price">
                                                         {{ product.user_price|persian_number }} {% trans "$" %}
@@ -339,9 +345,15 @@
                                                             
                                                             {% if product.inventory > 0 %}
                                                               {% if user.is_authenticated and user.is_affiliate %}
-                                                                    <span class="product-price">
-                                                                        {{ product.unit_price|persian_number }} {% trans "$" %}
-                                                                    </span>
+                                                                     <div class="product-summary">
+                                                                        <div class="product-seller-price-prev">
+                                                                                {{ product.user_price|persian_number }} {% trans "$" %}
+                                                                            </div>
+
+                                                                            <div class="product-seller-price-off">
+                                                                                {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                                            </div>
+                                                                        </div>
                                                                 {% else %}
                                                                     <span class="product-price">
                                                                         {{ product.user_price|persian_number }} {% trans "$" %}
@@ -455,9 +467,15 @@
                                            
                                             {% if product.inventory > 0 %}
                                               {% if user.is_authenticated and user.is_affiliate %}
-                                                    <span class="product-price">
+                                              <div class="product-summary">
+                                                    <div class="product-seller-price-prev">
+                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                    </div>
+
+                                                    <div class="product-seller-price-off">
                                                         {{ product.unit_price|persian_number }} {% trans "$" %}
-                                                    </span>
+                                                    </div>
+                                              </div>
                                                 {% else %}
                                                     <span class="product-price">
                                                         {{ product.user_price|persian_number }} {% trans "$" %}
@@ -532,9 +550,24 @@
 
                                             {% if product.inventory > 0 %}
                                               {% if user.is_authenticated and user.is_affiliate %}
-                                                    <span class="product-price">
+                                                     <div class="product-summary">
+                                                    <span class="product-seller-price-prev">
+                                                        {{ product.user_price|persian_number }} {% trans "$" %}
+                                                    </span>
+
+                                                    <!-- قیمت همکاری -->
+                                                   
+                                                </div>
+                                                
+
+                                                 <div class="product-summary">
+                                                   
+
+                                                    <!-- قیمت همکاری -->
+                                                    <span class="product-seller-price-off">
                                                         {{ product.unit_price|persian_number }} {% trans "$" %}
                                                     </span>
+                                                </div>
                                                 {% else %}
                                                     <span class="product-price">
                                                         {{ product.user_price|persian_number }} {% trans "$" %}
@@ -598,18 +631,30 @@
                                                     <i class="mdi mdi-star"></i>
                                                 </div>
 
-                                                <div class="card-horizontal-product-price">
-                                                    {% if product.inventory > 0 %}
-                                                      {% if user.is_authenticated and user.is_affiliate %}
-                                                            <span>{{ product.unit_price|persian_number }} {% trans "$" %}</span>
-                                                        {% else %}
-                                                            <span>{{ product.user_price|persian_number }} {% trans "$" %}</span>
-                                                        {% endif %}
-                                                    {% else %}
-                                                        <span class="text-danger">{% trans "Blank Inventory" %}</span>
-                                                    {% endif %}
-                                                </div>
+                                               <div class="card-horizontal-product-price product-summary">
+                                                {% if product.inventory > 0 %}
 
+                                                    {% if user.is_authenticated and user.is_affiliate %}
+                                                         <div class="product-summary">
+                                                            <div class="product-seller-price-prev">
+                                                                {{ product.user_price|persian_number }} {% trans "$" %}
+                                                            </div>
+
+                                                            <div class="product-seller-price-off">
+                                                                {{ product.unit_price|persian_number }} {% trans "$" %}
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <!-- قیمت عادی -->
+                                                        <span class="product-seller-price-off">
+                                                            {{ product.user_price|persian_number }} {% trans "$" %}
+                                                        </span>
+                                                    {% endif %}
+
+                                                {% else %}
+                                                    <span class="text-danger">{% trans "Blank Inventory" %}</span>
+                                                {% endif %}
+                                            </div>
                                                 <div class="card-horizontal-product-buttons">
                                                     <a href="{{ product.get_absolute_url }}" class="btn btn-outline-info">
                                                         {% trans "Product Detail" %}

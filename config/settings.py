@@ -40,6 +40,7 @@ DEBUG = env.bool('DJANGO_DEBUG')
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 #Api keys
 KAVENEGAR_API_KEY = env.str('KAVENEGAR_API_KEY')
+AFFILIATE_USER_API_KEY = env.str('AFFILIATE_USER_API_KEY')
 
 
 # Application definition

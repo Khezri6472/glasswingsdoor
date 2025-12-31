@@ -166,27 +166,37 @@
                             <h2>{% trans "Product Code" %}:{{product_detail.unit_code}}</h2>
                         </div>
                         <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 dt-sl">
-                            <h2>
+                             
+
+                            {% if product_detail.inventory > 0 %}
+                                {% if user.is_authenticated and user.is_affiliate %}
+                                    <div class="product-summary-detail">
+                                        <!-- قیمت عادی -->
+                                        <span class="product-seller-price-prev">
+                                          <h2>
                                 {% trans "price" %} :
-                                {% if product_detail.inventory > 0 %}
-                                  {% if user.is_authenticated and user.is_affiliate %}
-                                        <span class="price">
+                                 </h2> 
+                                  {{ product_detail.user_price|persian_number }} {% trans "$" %}
+                                        </span>
+
+                                        <!-- قیمت همکاری -->
+                                        <span class="price affiliate-price">
                                             {{ product_detail.unit_price|persian_number }} {% trans "$" %}
                                         </span>
-                                    {% else %}
-                                        <span class="price">
-                                            {{ product_detail.user_price|persian_number }} {% trans "$" %}
-                                        </span>
-                                    {% endif %}
+                                    </div>
                                 {% else %}
-                                <div>
-                                   <span class="price text-danger">
-                                        {% trans "Blank Inventory" %}
+                                    <span class="price">
+                                <h2>
+                                {% trans "price" %} :
+                                </h2> 
+                                        {{ product_detail.user_price|persian_number }} {% trans "$" %}
                                     </span>
-                                </div>
-                                    
                                 {% endif %}
-                            </h2>
+                            {% else %}
+                                <span class="price text-danger">
+                                    {% trans "Blank Inventory" %}
+                                </span>
+                            {% endif %}
                         </div>
 
                         <div class="dt-sl mt-4">
@@ -747,9 +757,17 @@
 
                                     {% if related.inventory > 0 %}
                                       {% if user.is_authenticated and user.is_affiliate %}
-                                            <span class="product-price">
-                                                {{ related.unit_price|persian_number }} {% trans "$" %}
-                                            </span>
+                                            
+                                                <div class="product-summary">
+                                                <div class="product-seller-price-prev">
+                                                    {{ related.user_price|persian_number }} {% trans "$" %}
+                                                </div>
+
+                                                <div class="product-seller-price-off">
+                                                    {{ related.unit_price|persian_number }} {% trans "$" %}
+                                                </div>
+                                            </div>
+
                                         {% else %}
                                             <span class="product-price">
                                                 {{ related.user_price|persian_number }} {% trans "$" %}
