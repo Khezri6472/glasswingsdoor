@@ -28,15 +28,15 @@ class Category(MPTTModel):
         verbose_name = _('Category')
         verbose_name_plural = _('categories')
 
-class Discount(models.Model):
-    discount = models.FloatField(verbose_name=_('Discount'))
-    description = models.CharField(max_length=255,verbose_name=_('Description'))
+# class Discount(models.Model):
+#     discount = models.FloatField(verbose_name=_('Discount'))
+#     description = models.CharField(max_length=255,verbose_name=_('Description'))
 
-    def __str__(self):
-        return f'{str(self.discount)} | {self.description}'
-    class Meta:
-        verbose_name = _('Discount')
-        verbose_name_plural = _('Discounts')
+#     def __str__(self):
+#         return f'{str(self.discount)} | {self.description}'
+#     class Meta:
+#         verbose_name = _('Discount')
+#         verbose_name_plural = _('Discounts')
 
 class Product(models.Model):
     name = models.CharField(max_length=255,verbose_name=_('Name'))
@@ -46,11 +46,13 @@ class Product(models.Model):
     short_description = models.TextField(verbose_name=_('Short Description'))
     unit_price = models.PositiveIntegerField(verbose_name=_('Unit Price'))
     user_price = models.PositiveIntegerField( default=0,verbose_name=_('User Price'))
+
+    
     special_code = models.CharField(max_length=10, blank=True,verbose_name=_('Special Code'))
     inventory = models.IntegerField(validators=[MinValueValidator(0)],verbose_name=_('Inventory'))
     datetime_created = models.DateTimeField(auto_now_add=True,verbose_name=_('Datetime Created'))
     datetime_modified = models.DateTimeField(auto_now=True,verbose_name=_('Datetime Modified'))
-    discounts = models.ManyToManyField(Discount, blank=True,verbose_name=_('Discounts'))
+    # discounts = models.ManyToManyField(Discount, blank=True,verbose_name=_('Discounts'))
 
     unit_code=models.CharField(max_length=4,unique=True,verbose_name=_('Unit Code'))
     main_image = models.ImageField(upload_to='product/product_image/main_image/', blank=True, verbose_name=_('Main Product Image'))
@@ -66,6 +68,33 @@ class Product(models.Model):
 
     def get_absolute_url(self):
             return reverse('product_detail', kwargs={ 'slug': self.slug , 'unit_code': self.unit_code,})
+    
+
+    @property
+    def discount_amount(self):
+        """
+        مقدار تخفیف (تفاوت قیمت عادی و همکاری)
+        """
+        if self.user_price > self.unit_price:
+            return self.user_price - self.unit_price
+        return 0
+
+    @property
+    def discount_percent(self):
+        """
+        درصد تخفیف نسبت به قیمت عادی
+        """
+        if self.user_price > 0 and self.unit_price < self.user_price:
+            return round(
+                (self.user_price - self.unit_price) * 100 / self.user_price
+            )
+        return 0
+
+    @property
+    def has_discount(self):
+         return self.discount_amount > 0
+
+    
 
 
 
@@ -225,3 +254,11 @@ class SharedProductLink(models.Model):
 
     def __str__(self):
         return str(self.uuid)
+
+
+class ExcelFile(models.Model):
+    file = models.FileField(upload_to="product/excel/")
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Main Excel File"

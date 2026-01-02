@@ -41,6 +41,9 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 #Api keys
 KAVENEGAR_API_KEY = env.str('KAVENEGAR_API_KEY')
 AFFILIATE_USER_API_KEY = env.str('AFFILIATE_USER_API_KEY')
+EXCEL_API_KEY = env.str('EXCEL_API_KEY')
+EXTERNAL_WEBHOOK_URL = env.str("EXTERNAL_WEBHOOK_URL")
+
 
 
 # Application definition

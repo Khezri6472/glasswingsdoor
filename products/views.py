@@ -20,8 +20,13 @@ from django.urls import reverse
 from django.views.generic import DetailView
 from django.shortcuts import get_list_or_404
 
-from .models import Product,Category,Comment,SharedProductLink
+from .serializers import ExcelFileSerializer
+from .permissions import HasExcelAPIKey
+from django.http import FileResponse
+
+from .models import Product,Category,Comment,SharedProductLink,ExcelFile
 from .forms import CommentForm
+from .services.notify import notify_excel_updated
 
 class HomeView(generic.TemplateView):
     template_name = 'home.html'
@@ -288,7 +293,7 @@ class CreateSharedProductLinkAPI(APIView):
 
         return Response({
             "link": url,
-            "uuid": shared_link.uuid,
+            # "uuid": shared_link.uuid,
             "product_count": products.count()
         }, status=status.HTTP_201_CREATED)
 
@@ -309,3 +314,63 @@ class SharedProductsView(DetailView):
         context = super().get_context_data(**kwargs)
         context["products"] = self.object.products.all()
         return context
+
+
+
+
+class UploadOrUpdateExcelAPIView(APIView):
+    permission_classes = [HasExcelAPIKey]
+
+    def post(self, request):
+        excel, _ = ExcelFile.objects.get_or_create(pk=1)
+
+        serializer = ExcelFileSerializer(
+            excel,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            excel = serializer.save()
+            notify_excel_updated(excel)
+
+            return Response(
+                {"message": "Excel uploaded/updated"},
+                status=status.HTTP_200_OK
+            )
+
+        return Response(serializer.errors, status=400)
+
+
+
+# class DownloadExcelAPIView(APIView):
+#     permission_classes = [HasExcelAPIKey]
+
+#     def get(self, request):
+#         excel = get_object_or_404(ExcelFile, pk=1)
+
+#         response = FileResponse(
+#             excel.file.open("rb"),
+#             as_attachment=True,
+#             filename="products.xlsx"
+#         )
+
+#         # متادیتا در هدر
+#         response["X-Excel-Updated-At"] = excel.updated_at.isoformat()
+
+#         return response
+
+# from rest_framework.response import Response
+
+class DownloadExcelAPIView(APIView):
+    permission_classes = [HasExcelAPIKey]
+
+    def get(self, request):
+        excel = get_object_or_404(ExcelFile, pk=1)
+
+        file_url = request.build_absolute_uri(excel.file.url)
+
+        return Response({
+            "file_url": file_url,
+            "updated_at": excel.updated_at
+        })

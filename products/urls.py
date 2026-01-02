@@ -1,6 +1,6 @@
 from django.urls import path,re_path
 
-from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI,HomeView,ProductInfoAPI, CreateSharedProductLinkAPI, SharedProductsView
+from .views import ProductListView,ProductDetailView,ProductByCategoryView,CommentCreateView,ProductSearchListView,SearchSuggestionsView,UpdatePriceAPI, UpdateStockAPI,HomeView,ProductInfoAPI, CreateSharedProductLinkAPI, SharedProductsView,UploadOrUpdateExcelAPIView,DownloadExcelAPIView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('products/', ProductListView.as_view(),name='products'),
@@ -22,6 +22,9 @@ urlpatterns = [
 
     path('api/create-shared-link/', CreateSharedProductLinkAPI.as_view(),name='create_shared_link_api'),
     path('shared-products/<uuid:uuid>/', SharedProductsView.as_view(), name='shared_products'),
+
+    path("api/excel/upload/", UploadOrUpdateExcelAPIView.as_view(),name='cexcel_upload_api'),
+    path("api/excel/download/", DownloadExcelAPIView.as_view(),name='excel_download_api'),
 
     # path('category/<slug:slug>/', ProductByCategoryView.as_view(), name='products_by_category'),
     #  path('category/<int:category_id>/', ProductByCategoryView.as_view(), name='products_by_category'),

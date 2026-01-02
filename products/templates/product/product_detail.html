@@ -49,6 +49,12 @@
                     </div>
                     <div class="product-gallery">
                         {% comment %} <span class="badge">پر فروش</span> {% endcomment %}
+                        {% if user.is_authenticated and user.is_affiliate and product_detail.discount_amount %}
+                            <span class="badge">
+                                {{ product_detail.discount_percent }}٪ 
+                            </span>
+                        {% endif %}
+
                         <div class="product-carousel owl-carousel" data-slider-id="1">
                             <div class="item">
                             <a class="gallery-item" 
@@ -169,7 +175,7 @@
                              
 
                             {% if product_detail.inventory > 0 %}
-                                {% if user.is_authenticated and user.is_affiliate %}
+                                 {% if user.is_authenticated and user.is_affiliate and product_detail.has_discount  %}
                                     <div class="product-summary-detail">
                                         <!-- قیمت عادی -->
                                         <span class="product-seller-price-prev">
@@ -738,6 +744,14 @@
                                         <i class="mdi mdi-star active"></i>
                                         <i class="mdi mdi-star active"></i>
                                     </div>
+                                    <div class="discount">
+                                        {% if related.discount_amount > 0 %}
+                                            <span class="discount-percent">
+                                                {{ related.discount_percent }}٪ 
+                                            </span>
+                                        {% endif %}
+
+                                    </div> 
                                 </div>
 
                                 <a class="product-thumb" href="{{ related.get_absolute_url }}">
@@ -756,7 +770,7 @@
 
 
                                     {% if related.inventory > 0 %}
-                                      {% if user.is_authenticated and user.is_affiliate %}
+                                       {% if user.is_authenticated and user.is_affiliate and product.has_discount  %}
                                             
                                                 <div class="product-summary">
                                                 <div class="product-seller-price-prev">
